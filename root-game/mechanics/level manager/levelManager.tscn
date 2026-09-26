@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dccjmnyo85nhn"]
+
+[ext_resource type="Script" uid="uid://bknbqfi6ihxmq" path="res://mechanics/level manager/level-transition.gd" id="1_pmsi4"]
+
+[node name="LevelManager" type="Node2D" unique_id=411992365]
+script = ExtResource("1_pmsi4")
+
+[node name="Transition" type="Node2D" parent="." unique_id=1682071605]

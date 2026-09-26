@@ -43,6 +43,7 @@ const GROW_EASE := 0.6
 @export_range(0.0, 0.5) var drink_softness: float = 0.15   # szerokość rozmycia frontu wody
 @export_range(2, 64) var drink_samples: int = 24
 
+@export var active: bool = true
 var _state: State = State.AIMING
 var _angle: float = 0.0                     
 var _swing_dir: float = 1.0
@@ -80,6 +81,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if (active == false): return
+	 
 	match _state:
 		State.AIMING:
 			_swing(delta)
@@ -88,11 +91,15 @@ func _process(delta: float) -> void:
 	queue_redraw()
 
 func _physics_process(_delta: float) -> void:
+	if (active == false): return
+	
 	if _click_queued and _state == State.AIMING:
 		_start_segment()
 	_click_queued = false
 
 func _unhandled_input(event: InputEvent) -> void:
+	if (active == false): return
+	
 	if _state != State.AIMING:
 		return
 	if event is InputEventMouseButton:
@@ -300,3 +307,7 @@ static func _raycast_obstacle(space: PhysicsDirectSpaceState2D, from: Vector2, t
 		query.exclude = exclude
 		hit = space.intersect_ray(query)
 	return hit
+	
+static func _reset():
+	# Kaniok dodaj tutaj reset bo nie chce mi się tego wszytkiego czytać więc zresetuj to co trzeba
+	pass

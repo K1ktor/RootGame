@@ -4,16 +4,16 @@
 
 [resource]
 shader = ExtResource("1_njtob")
-shader_parameter/liquid_level = 0.6690000317775
-shader_parameter/liquid_color = Color(0.3529412, 0.8235294, 0.25882354, 1)
-shader_parameter/foam_color = Color(0.3529412, 0.8235294, 0.25882354, 1)
-shader_parameter/wave_amplitude = 0.10000000149012
+shader_parameter/liquid_level = 0.9
+shader_parameter/liquid_color = Color(0.2, 0.5, 1, 0.8)
+shader_parameter/foam_color = Color(0.8, 0.9, 1, 0.6)
+shader_parameter/wave_amplitude = 0.05200000247
 shader_parameter/wave_frequency = 5.0
-shader_parameter/wave_speed = 0.0
-shader_parameter/gravity_angle = -1.4495900380381999
+shader_parameter/wave_speed = 2.0
+shader_parameter/gravity_angle = 0.0
 shader_parameter/gravity_direction = Vector2(0, 1)
-shader_parameter/foam_thickness = 0.02
-shader_parameter/shine_intensity = 0.0
-shader_parameter/add_bubble = false
-shader_parameter/bubble_scale = 24.286001153585
-shader_parameter/bubble_speed = 0.742000035245
+shader_parameter/foam_thickness = 0.0370000017575
+shader_parameter/shine_intensity = 0.3
+shader_parameter/add_bubble = true
+shader_parameter/bubble_scale = 19.2590009148025
+shader_parameter/bubble_speed = 1.222000058045

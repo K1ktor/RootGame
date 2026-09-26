@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://rjm0m54sii6e"]
+
+[ext_resource type="Shader" uid="uid://cmwfauifiaa6l" path="res://Shaders/liquid-level-effect.gdshader" id="1_evgv8"]
+
+[resource]
+shader = ExtResource("1_evgv8")
+shader_parameter/liquid_level = 0.6690000317775
+shader_parameter/liquid_color = Color(0.3529412, 0.8235294, 0.25882354, 1)
+shader_parameter/foam_color = Color(0.3529412, 0.8235294, 0.25882354, 1)
+shader_parameter/wave_amplitude = 0.10000000149012
+shader_parameter/wave_frequency = 5.0
+shader_parameter/wave_speed = 0.0
+shader_parameter/gravity_angle = -1.4495900380381999
+shader_parameter/gravity_direction = Vector2(0, 1)
+shader_parameter/foam_thickness = 0.02
+shader_parameter/shine_intensity = 0.0
+shader_parameter/add_bubble = false
+shader_parameter/bubble_scale = 24.286001153585
+shader_parameter/bubble_speed = 0.742000035245
