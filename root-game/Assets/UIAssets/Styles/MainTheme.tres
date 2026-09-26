@@ -1,0 +1,49 @@
+[gd_resource type="Theme" format=3 uid="uid://dowgpeg4oms5l"]
+
+[ext_resource type="StyleBox" uid="uid://sq50ptfiw0ok" path="res://Assets/UIAssets/Styles/NormalButtonStyleBox.tres" id="1_tybmd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_56n6e"]
+bg_color = Color(0.6313726, 0.25490198, 0.16470589, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6509804, 0.45882353, 0.30588236, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+shadow_color = Color(0.3647059, 0.21568628, 0.1254902, 1)
+shadow_size = 1
+shadow_offset = Vector2(-1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tybmd"]
+bg_color = Color(0.36480182, 0.1955953, 0.12513271, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6509804, 0.45882353, 0.30588236, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+shadow_color = Color(0.3647059, 0.21568628, 0.1254902, 1)
+shadow_size = 1
+shadow_offset = Vector2(-1, 1)
+
+[resource]
+Button/colors/font_color = Color(0.85882354, 0.7647059, 0.6117647, 1)
+Button/colors/font_hover_color = Color(0.85882354, 0.7647059, 0.6117647, 1)
+Button/colors/font_hover_pressed_color = Color(0.85882354, 0.7647059, 0.6117647, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.85882354, 0.7647059, 0.6117647, 1)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 64
+Button/styles/hover = SubResource("StyleBoxFlat_56n6e")
+Button/styles/normal = ExtResource("1_tybmd")
+Button/styles/pressed = SubResource("StyleBoxFlat_tybmd")
