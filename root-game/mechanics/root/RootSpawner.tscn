@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://brxqsch3nf3p"]
+
+[ext_resource type="Script" uid="uid://lvuydhjiqo2s" path="res://mechanics/root/Scripts/root_spawner.gd" id="1_spawner"]
+[ext_resource type="PackedScene" uid="uid://bhwbk5a72h3ph" path="res://mechanics/root/Root.tscn" id="2_root"]
+
+[node name="RootSpawner" type="Node2D" unique_id=1033761846]
+script = ExtResource("1_spawner")
+root_scene = ExtResource("2_root")
+spread_deg = 70.0

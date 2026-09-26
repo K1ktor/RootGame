@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dcm8jccc1k7gf"]
+
+[ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="1_bw6eb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvi6d"]
+size = Vector2(126, 38)
+
+[node name="Test" type="Node2D" unique_id=69225555]
+
+[node name="RootSpawner" parent="." unique_id=1033761846 instance=ExtResource("1_bw6eb")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2099984695]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=470669987]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1218143299]
+position = Vector2(-166, 124)
+shape = SubResource("RectangleShape2D_cvi6d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=224617061]
+position = Vector2(150, 170)
+shape = SubResource("RectangleShape2D_cvi6d")

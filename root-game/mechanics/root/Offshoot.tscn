@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bvdjd5s383vyf"]
+
+[ext_resource type="Script" uid="uid://beb2snjuygiop" path="res://mechanics/root/Scripts/offshoot.gd" id="1_offshoot"]
+
+[node name="Offshoot" type="Line2D" unique_id=2057372600]
+width = 4.0
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("1_offshoot")
+length_max = 40.0
+points_count = 10

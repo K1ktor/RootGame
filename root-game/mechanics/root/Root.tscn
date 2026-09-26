@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bhwbk5a72h3ph"]
+
+[ext_resource type="Script" uid="uid://bx80hdg2ssxd1" path="res://mechanics/root/Scripts/root.gd" id="1_root"]
+[ext_resource type="PackedScene" uid="uid://bvdjd5s383vyf" path="res://mechanics/root/Offshoot.tscn" id="2_offshoot"]
+
+[sub_resource type="Gradient" id="Gradient_root"]
+offsets = PackedFloat32Array(0.20987654, 0.9506173, 1)
+colors = PackedColorArray(0.32, 0.2, 0.1, 1, 0.55, 0.38, 0.22, 1, 0.65724516, 0.5235924, 0.3440581, 1)
+
+[node name="Root" type="Node2D" unique_id=776282153]
+script = ExtResource("1_root")
+offshoot_scene = ExtResource("2_offshoot")
+root_gradient = SubResource("Gradient_root")
