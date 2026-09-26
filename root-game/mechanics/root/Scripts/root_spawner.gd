@@ -7,8 +7,23 @@ signal root_stopped(root: Root, hit_position: Vector2)
 @export_range(1, 16) var roots_per_click: int = 1
 @export_range(0.0, 120.0) var spread_deg: float = 40.0 
 
+var _generation := 0
+
 
 func _ready() -> void:
+	_spawn_initial()
+
+
+func reset() -> void:
+	_generation += 1
+	for child in get_children():
+		if child is Root:
+			remove_child(child)
+			child.queue_free()
+	_spawn_initial()
+
+
+func _spawn_initial() -> void:
 	for i in roots_per_click:
 		_spawn(_fan_offset_deg(i))
 
@@ -35,4 +50,10 @@ func _on_root_stopped(hit_position: Vector2, root: Root) -> void:
 	if root.has_drunk():
 		return
 
-	_spawn.call_deferred(root.angle_offset_deg, root)
+	_spawn_next.call_deferred(root.angle_offset_deg, root, _generation)
+
+
+func _spawn_next(offset_deg: float, swing_from: Root, generation: int) -> void:
+	if generation != _generation:
+		return
+	_spawn(offset_deg, swing_from)
