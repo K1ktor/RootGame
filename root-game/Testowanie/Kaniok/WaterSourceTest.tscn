@@ -8,15 +8,16 @@
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1002742329]
 
 [node name="WaterSourceOval" parent="." unique_id=132959649 instance=ExtResource("1_water")]
-position = Vector2(-380, 60)
-polygon = PackedVector2Array(110, 0, 85, 36, 65, 61, 15, 52, -57.599686, 49.91967, -67, 0, -84, -36, -35, -63, 33, -61, 93, -40)
+position = Vector2(-376.70102, -111.45966)
+scale = Vector2(1.015464, 1.0403225)
+polygon = PackedVector2Array(110, 0, 85, 36, 34.172607, 32.162792, 15, 52, -57.599686, 49.91967, -67, 0, -84, -36, -35, -63, 33, -61, 93, -40)
 
 [node name="WaterSourceConcave" parent="." unique_id=1685427004 instance=ExtResource("1_water")]
-position = Vector2(0, 120)
+position = Vector2(2.0000305, -54)
 polygon = PackedVector2Array(-120, -60, -70, -60, -60, 10, -30, 30, 30, 30, 60, 10, 70, -60, 120, -60, 115, 30, 80, 70, 0, 90, -80, 70, -115, 30)
 
 [node name="WaterSourceLong" parent="." unique_id=1880348569 instance=ExtResource("1_water")]
-position = Vector2(380, 40)
+position = Vector2(382.00003, -134)
 polygon = PackedVector2Array(-150, -20, -60, -50, 40, -45, 140, -10, 150, 20, 60, 45, -40, 50, -140, 25)
 inset = 14.0
 collision_source = 1
