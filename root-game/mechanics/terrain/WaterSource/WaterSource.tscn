@@ -9,7 +9,7 @@ colors = PackedColorArray(0.58, 0.42, 0.26, 1, 0.34, 0.22, 0.11, 1)
 [sub_resource type="Gradient" id="Gradient_water"]
 colors = PackedColorArray(0.4, 0.72, 0.93, 1, 0.1, 0.32, 0.62, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6f62y"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yduhq"]
 gradient = SubResource("Gradient_water")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -24,7 +24,7 @@ gradient_direction = 2
 
 [node name="Water" type="Polygon2D" parent="." unique_id=1402958631]
 material = ExtResource("2_yduhq")
-texture = SubResource("GradientTexture2D_6f62y")
+texture = SubResource("GradientTexture2D_yduhq")
 texture_offset = Vector2(73.55688, 54.93924)
 texture_scale = Vector2(0.3668321, 0.57872444)
 polygon = PackedVector2Array(31.52648, -53.03988, 87.02021, -33.61707, 100.90986, -0.93555, 79.42411, 30.00392, 36.0931, 55.6488, 19.21084, 45.19788, 15.42377, 44.01123, 15.22914, 44.00328, -50.93018, 42.10749, -59.13818, -1.48045, -59.76601, -3.41605, -73.55688, -32.62025, -33.05204, -54.93924)

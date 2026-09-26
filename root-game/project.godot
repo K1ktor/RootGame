@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RootGame"
-run/main_scene="uid://cto2eep5adrs0"
+run/main_scene="uid://ichdfrgnkihi"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="uid://d1tsgt1uw67m2"
 
@@ -32,6 +32,9 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://Assets/": "blue",
+"res://DEBUG/": "gray",
+"res://Level Data/": "pink",
+"res://Shaders/": "purple",
 "res://Testowanie/": "red",
 "res://autoloads/": "gray",
 "res://mechanics/": "green",

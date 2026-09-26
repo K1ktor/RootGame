@@ -1,18 +1,19 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://4uay03ap663a"]
 
-[ext_resource type="Shader" uid="uid://cmwfauifiaa6l" path="res://Shaders/liquid-level-effect.gdshader" id="1_1t56o"]
+[ext_resource type="Shader" uid="uid://cmwfauifiaa6l" path="res://Shaders/liquid-level-effect.gdshader" id="1_njtob"]
 
 [resource]
-shader = ExtResource("1_1t56o")
-shader_parameter/blur = 3.5
-shader_parameter/warp_intensity = 0.4
-shader_parameter/strength_x = 12.0
-shader_parameter/strength_y = 12.0
-shader_parameter/offset_x = 0.0
-shader_parameter/offset_y = 0.0
-shader_parameter/corner_radius = 0.3
-shader_parameter/edge_smoothness = 1.0
-shader_parameter/tint = Color(0.95, 0.97, 1, 0.12)
-shader_parameter/edge_highlight = Color(1, 1, 1, 0.3)
-shader_parameter/edge_width = 1.5
-shader_parameter/chromatic_strength = 5.0
+shader = ExtResource("1_njtob")
+shader_parameter/liquid_level = 0.6690000317775
+shader_parameter/liquid_color = Color(0.3529412, 0.8235294, 0.25882354, 1)
+shader_parameter/foam_color = Color(0.3529412, 0.8235294, 0.25882354, 1)
+shader_parameter/wave_amplitude = 0.10000000149012
+shader_parameter/wave_frequency = 5.0
+shader_parameter/wave_speed = 0.0
+shader_parameter/gravity_angle = -1.4495900380381999
+shader_parameter/gravity_direction = Vector2(0, 1)
+shader_parameter/foam_thickness = 0.02
+shader_parameter/shine_intensity = 0.0
+shader_parameter/add_bubble = false
+shader_parameter/bubble_scale = 24.286001153585
+shader_parameter/bubble_speed = 0.742000035245

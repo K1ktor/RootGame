@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://ichdfrgnkihi"]
+
+[ext_resource type="Material" uid="uid://4uay03ap663a" path="res://Shaders/liquid-level-material.tres" id="1_308x2"]
+
+[sub_resource type="Gradient" id="Gradient_y4q38"]
+colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.41960785, 0.25882354, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j8uoe"]
+gradient = SubResource("Gradient_y4q38")
+
+[sub_resource type="Gradient" id="Gradient_1k56t"]
+colors = PackedColorArray(0.3529412, 0.8235294, 0.25882354, 1, 0.1966804, 0.45352584, 0.14688927, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3uchd"]
+gradient = SubResource("Gradient_1k56t")
+
+[node name="Level1" type="Node2D" unique_id=586243082]
+
+[node name="Button" type="Button" parent="." unique_id=1322815984]
+offset_left = 23.0
+offset_top = 21.0
+offset_right = 108.0
+offset_bottom = 52.0
+text = "Next level"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=356657488]
+position = Vector2(638.99884, 474)
+scale = Vector2(5.148447, 579.08795)
+texture = SubResource("GradientTexture1D_j8uoe")
+
+[node name="Grass" type="Sprite2D" parent="." unique_id=89500779]
+material = ExtResource("1_308x2")
+position = Vector2(639.0004, 214.07765)
+rotation = 4.7122164
+scale = Vector2(0.238044, 1300)
+texture = SubResource("GradientTexture1D_3uchd")
