@@ -307,7 +307,3 @@ static func _raycast_obstacle(space: PhysicsDirectSpaceState2D, from: Vector2, t
 		query.exclude = exclude
 		hit = space.intersect_ray(query)
 	return hit
-	
-static func _reset():
-	# Kaniok dodaj tutaj reset bo nie chce mi się tego wszytkiego czytać więc zresetuj to co trzeba
-	pass

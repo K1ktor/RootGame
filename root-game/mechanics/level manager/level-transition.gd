@@ -8,6 +8,11 @@ const oldPlantPos = Vector2(610.0, 140.0)
 const newPlantPos = Vector2(1610.0, 140.0)
 var timer := 1000.0
 @export var speed := 200.0
+
+# To dodalem bo to spawnuje wszystkie rooty, wsm to powinno sie nazywac 
+# root_manager a nie spawner ale chuj
+@export var root_spawner : RootSpawner
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	oldPlant.position = Vector2(610.0, 140.0)
