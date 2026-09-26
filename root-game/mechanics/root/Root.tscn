@@ -7,7 +7,12 @@
 offsets = PackedFloat32Array(0.20987654, 0.9506173, 1)
 colors = PackedColorArray(0.32, 0.2, 0.1, 1, 0.55, 0.38, 0.22, 1, 0.65724516, 0.5235924, 0.3440581, 1)
 
+[sub_resource type="Gradient" id="Gradient_drink"]
+offsets = PackedFloat32Array(0.2, 0.95, 1)
+colors = PackedColorArray(0.1, 0.3, 0.6, 1, 0.25, 0.55, 0.9, 1, 0.45, 0.72, 0.95, 1)
+
 [node name="Root" type="Node2D" unique_id=776282153]
 script = ExtResource("1_root")
 offshoot_scene = ExtResource("2_offshoot")
 root_gradient = SubResource("Gradient_root")
+drink_gradient = SubResource("Gradient_drink")

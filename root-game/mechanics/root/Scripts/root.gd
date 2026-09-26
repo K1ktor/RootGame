@@ -3,6 +3,7 @@ extends Node2D
 
 signal segment_finished(tip_position: Vector2)
 signal stopped(hit_position: Vector2)
+signal drank_water(water: WaterSource)
 
 enum State { AIMING, GROWING, STOPPED }
 
@@ -32,6 +33,16 @@ const GROW_EASE := 0.6
 @export var root_gradient: Gradient
 @export var wave_amplitude: float = 6.0
 
+@export_group("Uderzenie w mapę")
+@export_range(0.0, 1.0) var hit_darken: float = 0.25     # o ile ściemnić korzeń po uderzeniu w przeszkodę
+@export var hit_darken_duration: float = 0.4
+
+@export_group("Picie wody")
+@export var drink_gradient: Gradient         # kolor korzenia po napiciu się (od podstawy do czubka)
+@export var drink_duration: float = 1.5
+@export_range(0.0, 0.5) var drink_softness: float = 0.15   # szerokość rozmycia frontu wody
+@export_range(2, 64) var drink_samples: int = 24
+
 var _state: State = State.AIMING
 var _angle: float = 0.0                     
 var _swing_dir: float = 1.0
@@ -40,6 +51,9 @@ var _click_queued := false
 var _points: PackedVector2Array = [Vector2.ZERO]  
 var _segment: PackedVector2Array = []            
 var _blocked := false
+var _hit_collider: Object = null
+var _own_gradient: Gradient
+var _drank := false
 var _grow_time: float = 0.0
 
 var _line: Line2D
@@ -135,6 +149,7 @@ func _start_segment() -> void:
 	var clip := clip_path(self, path, collision_mask)
 	_segment = clip["path"]
 	_blocked = clip["hit"]
+	_hit_collider = clip["collider"]
 	_spawn_offshoots()
 	_grow_time = 0.0
 	_state = State.GROWING
@@ -178,9 +193,79 @@ func _finish_segment() -> void:
 		set_physics_process(false)
 		set_process_unhandled_input(false)
 		stopped.emit(to_global(_tip()))
+		var water := _hit_water_source()
+		if water:
+			_drink(water)
+		else:
+			_darken()
 	else:
 		_state = State.AIMING
 		segment_finished.emit(to_global(_tip()))
+
+
+func has_drunk() -> bool:
+	return _drank
+
+
+func _hit_water_source() -> WaterSource:
+	var node := _hit_collider as Node
+	while node:
+		if node is WaterSource:
+			return node
+		node = node.get_parent()
+	return null
+
+
+# Woda "wciągana" od czubka do podstawy: front przesuwa się z 1 do 0 po długości linii.
+func _drink(water: WaterSource) -> void:
+	_drank = true
+	_take_own_gradient()
+	_set_drink_front(1.0 + drink_softness)
+	var tween := create_tween()
+	tween.tween_method(_set_drink_front, 1.0 + drink_softness, -drink_softness, drink_duration) 			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tween.finished.connect(Signals.level_complete.emit)
+	drank_water.emit(water)
+
+
+func _set_drink_front(front: float) -> void:
+	var offsets := PackedFloat32Array()
+	var colors := PackedColorArray()
+	for i in drink_samples:
+		var o := float(i) / (drink_samples - 1)
+		var base := root_gradient.sample(o) if root_gradient else root_color
+		var water := drink_gradient.sample(o) if drink_gradient else Color(0.25, 0.55, 0.9)
+		var w := smoothstep(front - drink_softness, front + drink_softness, o)
+		offsets.append(o)
+		colors.append(base.lerp(water, w))
+	_own_gradient.offsets = offsets
+	_own_gradient.colors = colors
+
+
+func _darken() -> void:
+	_take_own_gradient()
+	_set_darkness(0.0)
+	create_tween().tween_method(_set_darkness, 0.0, hit_darken, hit_darken_duration) 			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+
+func _set_darkness(amount: float) -> void:
+	var offsets := PackedFloat32Array()
+	var colors := PackedColorArray()
+	for i in drink_samples:
+		var o := float(i) / (drink_samples - 1)
+		var base := root_gradient.sample(o) if root_gradient else root_color
+		offsets.append(o)
+		colors.append(base.darkened(amount))
+	_own_gradient.offsets = offsets
+	_own_gradient.colors = colors
+
+
+# Własna kopia gradientu, żeby nie zmieniać współdzielonego zasobu innych korzeni
+func _take_own_gradient() -> void:
+	_own_gradient = Gradient.new()
+	_line.gradient = _own_gradient
+	for child in get_children():
+		if child is Offshoot and child.gradient == root_gradient:
+			child.gradient = _own_gradient
 
 
 # Pomocnicze, używane też przez Offshoot
@@ -201,9 +286,9 @@ static func clip_path(node: Node2D, path: PackedVector2Array, mask: int) -> Dict
 		var hit := _raycast_obstacle(space, node.to_global(path[i - 1]), node.to_global(path[i]), mask)
 		if not hit.is_empty():
 			out.append(node.to_local(hit["position"]))
-			return {"path": out, "hit": true}
+			return {"path": out, "hit": true, "collider": hit["collider"]}
 		out.append(path[i])
-	return {"path": out, "hit": false}
+	return {"path": out, "hit": false, "collider": null}
 
 
 static func _raycast_obstacle(space: PhysicsDirectSpaceState2D, from: Vector2, to: Vector2, mask: int) -> Dictionary:

@@ -32,5 +32,7 @@ func _spawn(offset_deg: float, swing_from: Root = null) -> Root:
 
 func _on_root_stopped(hit_position: Vector2, root: Root) -> void:
 	root_stopped.emit(root, hit_position)
+	if root.has_drunk():
+		return
 
 	_spawn.call_deferred(root.angle_offset_deg, root)
