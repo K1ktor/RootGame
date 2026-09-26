@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://devpi7wm3aoa3"]
 
 [ext_resource type="Script" uid="uid://b7r87sq2pllps" path="res://mechanics/terrain/WaterSource/Scripts/water_source.gd" id="1_water_source"]
+[ext_resource type="Material" uid="uid://4uay03ap663a" path="res://Shaders/liquid-level-material.tres" id="2_yduhq"]
 
 [sub_resource type="Gradient" id="Gradient_bank"]
 colors = PackedColorArray(0.58, 0.42, 0.26, 1, 0.34, 0.22, 0.11, 1)
@@ -8,7 +9,7 @@ colors = PackedColorArray(0.58, 0.42, 0.26, 1, 0.34, 0.22, 0.11, 1)
 [sub_resource type="Gradient" id="Gradient_water"]
 colors = PackedColorArray(0.4, 0.72, 0.93, 1, 0.1, 0.32, 0.62, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3mgdq"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6f62y"]
 gradient = SubResource("Gradient_water")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -22,12 +23,14 @@ water_gradient = SubResource("Gradient_water")
 gradient_direction = 2
 
 [node name="Water" type="Polygon2D" parent="." unique_id=1402958631]
-texture = SubResource("GradientTexture2D_3mgdq")
+material = ExtResource("2_yduhq")
+texture = SubResource("GradientTexture2D_6f62y")
 texture_offset = Vector2(73.55688, 54.93924)
 texture_scale = Vector2(0.3668321, 0.57872444)
 polygon = PackedVector2Array(31.52648, -53.03988, 87.02021, -33.61707, 100.90986, -0.93555, 79.42411, 30.00392, 36.0931, 55.6488, 19.21084, 45.19788, 15.42377, 44.01123, 15.22914, 44.00328, -50.93018, 42.10749, -59.13818, -1.48045, -59.76601, -3.41605, -73.55688, -32.62025, -33.05204, -54.93924)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1739026452]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=563219870]
 polygon = PackedVector2Array(110, 0, 85, 36, 36, 65, 15, 52, -57.599686, 49.91967, -67, 0, -84, -36, -35, -63, 33, -61, 93, -40)
