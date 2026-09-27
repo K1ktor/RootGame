@@ -1,11 +1,8 @@
 [gd_scene format=3 uid="uid://ichdfrgnkihi"]
 
 [ext_resource type="Material" uid="uid://rjm0m54sii6e" path="res://Shaders/grass.tres" id="1_m25cy"]
-[ext_resource type="Texture2D" uid="uid://brw5x3atf0o2u" path="res://DEBUG/sunflower.png" id="2_1k56t"]
-[ext_resource type="Texture2D" uid="uid://clf4f01u5fkmv" path="res://DEBUG/goku.png" id="3_plle1"]
 [ext_resource type="PackedScene" uid="uid://dccjmnyo85nhn" path="res://mechanics/level manager/levelManager.tscn" id="4_pbkjt"]
-[ext_resource type="PackedScene" uid="uid://bhwbk5a72h3ph" path="res://mechanics/root/Root.tscn" id="5_5wg1r"]
-[ext_resource type="PackedScene" uid="uid://its667c6i4dw" path="res://Level Data/level1.tscn" id="6_m25cy"]
+[ext_resource type="Texture2D" uid="uid://da4s5cyiv2kef" path="res://Assets/kwiatek.svg" id="7_ikl13"]
 
 [sub_resource type="Gradient" id="Gradient_y4q38"]
 colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.41960785, 0.25882354, 1)
@@ -35,23 +32,6 @@ rotation = -1.570969
 scale = Vector2(0.238044, 1300)
 texture = SubResource("GradientTexture1D_3uchd")
 
-[node name="Sunflower" type="Sprite2D" parent="Images" unique_id=205245547]
-position = Vector2(610, 140)
-scale = Vector2(0.10756853, 0.10756854)
-texture = ExtResource("2_1k56t")
-
-[node name="Root" parent="Images/Sunflower" unique_id=776282153 instance=ExtResource("5_5wg1r")]
-position = Vector2(0, 600)
-scale = Vector2(9.296399, 9.296398)
-
-[node name="Goku" type="Sprite2D" parent="Images" unique_id=702814007]
-position = Vector2(1687.9999, 118.000015)
-scale = Vector2(0.04600005, 0.046000056)
-texture = ExtResource("3_plle1")
-
-[node name="Root" parent="Images/Goku" unique_id=1340137853 instance=ExtResource("5_5wg1r")]
-position = Vector2(0, 1500)
-
 [node name="Button" type="Button" parent="." unique_id=1322815984]
 offset_left = 23.0
 offset_top = 21.0
@@ -59,11 +39,15 @@ offset_right = 108.0
 offset_bottom = 52.0
 text = "Next level"
 
-[node name="LevelManager" parent="." unique_id=411992365 node_paths=PackedStringArray("oldPlant", "newPlant") instance=ExtResource("4_pbkjt")]
+[node name="LevelManager" parent="." unique_id=411992365 instance=ExtResource("4_pbkjt")]
 position = Vector2(45, -229)
-oldPlant = NodePath("../Images/Sunflower")
-newPlant = NodePath("../Images/Goku")
 
-[node name="level1" parent="." unique_id=588756321 instance=ExtResource("6_m25cy")]
+[node name="Kwiatek" type="Sprite2D" parent="." unique_id=2041571177]
+position = Vector2(490, 141)
+texture = ExtResource("7_ikl13")
+
+[node name="activeScene" type="Node2D" parent="." unique_id=1956599407]
+
+[node name="oldScene" type="Node2D" parent="." unique_id=32667225]
 
 [connection signal="button_down" from="Button" to="LevelManager" method="_on_button_button_down"]

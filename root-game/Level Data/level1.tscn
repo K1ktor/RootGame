@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://its667c6i4dw"]
 
-[ext_resource type="Material" uid="uid://4uay03ap663a" path="res://Shaders/liquid-level-material.tres" id="1_308x2"]
 [ext_resource type="Texture2D" uid="uid://brw5x3atf0o2u" path="res://DEBUG/sunflower.png" id="2_1k56t"]
+[ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="3_plle1"]
 [ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="4_pbkjt"]
-[ext_resource type="PackedScene" uid="uid://bhwbk5a72h3ph" path="res://mechanics/root/Root.tscn" id="5_5wg1r"]
 
 [sub_resource type="Gradient" id="Gradient_y4q38"]
 colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.41960785, 0.25882354, 1)
@@ -11,37 +10,24 @@ colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.419
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_j8uoe"]
 gradient = SubResource("Gradient_y4q38")
 
-[sub_resource type="Gradient" id="Gradient_1k56t"]
-colors = PackedColorArray(0.3529412, 0.8235294, 0.25882354, 1, 0.1966804, 0.45352584, 0.14688927, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_3uchd"]
-gradient = SubResource("Gradient_1k56t")
-
 [node name="level1" type="Node2D" unique_id=586243082]
 
 [node name="Images" type="Node2D" parent="." unique_id=111852164]
-visible = false
 
 [node name="Background" type="Sprite2D" parent="Images" unique_id=356657488]
+visible = false
 position = Vector2(638.99884, 474)
 scale = Vector2(5.148447, 579.08795)
 texture = SubResource("GradientTexture1D_j8uoe")
-
-[node name="Grass" type="Sprite2D" parent="Images" unique_id=89500779]
-material = ExtResource("1_308x2")
-position = Vector2(639.0004, 214.07765)
-rotation = -1.570969
-scale = Vector2(0.238044, 1300)
-texture = SubResource("GradientTexture1D_3uchd")
 
 [node name="Sunflower" type="Sprite2D" parent="Images" unique_id=205245547]
 position = Vector2(610, 140)
 scale = Vector2(0.10756853, 0.10756854)
 texture = ExtResource("2_1k56t")
 
-[node name="Root" parent="Images/Sunflower" unique_id=776282153 instance=ExtResource("5_5wg1r")]
-position = Vector2(0, 600)
-scale = Vector2(9.296399, 9.296398)
-
 [node name="WaterSource" parent="." unique_id=821674821 instance=ExtResource("4_pbkjt")]
 position = Vector2(596, 467)
+
+[node name="RootSpawner" parent="." unique_id=1033761846 instance=ExtResource("3_plle1")]
+position = Vector2(610, 204.54112)
+scale = Vector2(0.10756853, 0.10756854)

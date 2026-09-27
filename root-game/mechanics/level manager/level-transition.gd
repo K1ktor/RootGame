@@ -1,13 +1,14 @@
 extends Node
 
-@export var oldPlant : Sprite2D
-@export var newPlant : Sprite2D
-var oldPlantRoot : Root
-var newPlantRoot : Root
-const oldPlantPos = Vector2(610.0, 140.0)
-const newPlantPos = Vector2(1610.0, 140.0)
+var levels_list = [ preload("res://Level Data/level1.tscn"), preload("res://Level Data/level2.tscn") ]
+var levelCompleted = 0
+
+const old_scene_pos = Vector2(0.0, 250.0)
+const new_scene_pos = Vector2(2000.0, 250.0)
 var timer := 1000.0
 @export var speed := 200.0
+@onready var activeScene := $"../activeScene"
+@onready var oldScene := $"../oldScene"
 
 # To dodalem bo to spawnuje wszystkie rooty, wsm to powinno sie nazywac 
 # root_manager a nie spawner ale chuj
@@ -15,38 +16,29 @@ var timer := 1000.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	oldPlant.position = Vector2(610.0, 140.0)
-	newPlant.position = Vector2(1610.0, 140.0)
-	oldPlant.visible = true
-	newPlant.visible = true
 	resetProgress()
 	timer = 1000
-	oldPlantRoot.global_scale = Vector2.ONE
-	newPlantRoot.global_scale = Vector2.ONE
 	pass # Replace with function body.
 
 func resetProgress():
 	timer = 0
-	var temp = newPlant
-	newPlant = oldPlant
-	oldPlant = temp
-	oldPlantRoot = oldPlant.get_node("Root")
-	newPlantRoot = newPlant.get_node("Root")
-	oldPlantRoot.active = false
-	newPlantRoot.active = false
-	newPlantRoot.reset()
-	
+	var scene : Node2D = levels_list[1].instantiate()
+	activeScene.remove_child(get_child(0))
+	oldScene.remove_child(get_child(0))
+	add_child(scene)
+	oldScene = activeScene
+	activeScene = scene
+	#root_spawner = activeScene.get_node("RootSpawner")
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	timer += delta * speed
-	if (timer >= 1000):
-		newPlantRoot.active = true
+	print(timer)
 	var progress = min(timer, 1000.0) / 1000.0
-	var ease = easeInOutCubic(progress) * 1000
-	oldPlant.position = oldPlantPos + ease * Vector2.LEFT
-	newPlant.position = newPlantPos + ease * Vector2.LEFT
+	var easeing = easeInOutCubic(progress) * 2000
+	oldScene.position = old_scene_pos + easeing * Vector2.LEFT
+	activeScene.position = new_scene_pos + easeing * Vector2.LEFT
 	pass
 
 func easeInOutCubic(x: float) -> float:
