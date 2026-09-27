@@ -1,12 +1,24 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cdpimh7sn6yl0"]
 
-[ext_resource type="Script" path="res://mechanics/upgrades/Scripts/upgrade_card_view.gd" id="1_view"]
+[ext_resource type="Texture2D" uid="uid://cmjb8litlxr8x" path="res://Assets/UpgradeCardAtlas.tres" id="1_fpds4"]
+[ext_resource type="Script" uid="uid://2v2x7jlysg1q" path="res://mechanics/upgrades/Scripts/upgrade_card_view.gd" id="1_view"]
 
-[node name="UpgradeCardView" type="Button"]
-custom_minimum_size = Vector2(240, 340)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_card"]
+texture = ExtResource("1_fpds4")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
+[node name="UpgradeCardView" type="Button" unique_id=1701970362]
+custom_minimum_size = Vector2(240, 348)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_card")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_card")
+theme_override_styles/hover = SubResource("StyleBoxTexture_card")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_card")
+theme_override_styles/normal = SubResource("StyleBoxTexture_card")
 script = ExtResource("1_view")
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="." unique_id=250137046]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,20 +31,12 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBox" type="VBoxContainer" parent="Margin"]
+[node name="VBox" type="VBoxContainer" parent="Margin" unique_id=1715636102]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
 
-[node name="Texture" type="TextureRect" parent="Margin/VBox"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Description" type="Label" parent="Margin/VBox"]
+[node name="Description" type="Label" parent="Margin/VBox" unique_id=701763231]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 6

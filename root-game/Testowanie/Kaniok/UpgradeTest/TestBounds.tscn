@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cpssnj3ymmruw"]
 
 [sub_resource type="RectangleShape2D" id="Rect_Floor"]
 size = Vector2(1400, 40)
@@ -12,34 +12,34 @@ size = Vector2(40, 800)
 [sub_resource type="RectangleShape2D" id="Rect_Right"]
 size = Vector2(40, 800)
 
-[node name="TestBounds" type="Node2D"]
+[node name="TestBounds" type="Node2D" unique_id=1632142460]
 
-[node name="Background" type="Polygon2D" parent="."]
-color = Color(0.72, 0.56, 0.38, 1)
+[node name="Background" type="Polygon2D" parent="." unique_id=2134101047]
+color = Color(0.719734, 0.50467855, 0.31313828, 1)
 polygon = PackedVector2Array(-640, -360, 640, -360, 640, 360, -640, 360)
 
-[node name="Walls" type="Node2D" parent="."]
+[node name="Walls" type="Node2D" parent="." unique_id=372490388]
 
-[node name="Floor" type="StaticBody2D" parent="Walls"]
+[node name="Floor" type="StaticBody2D" parent="Walls" unique_id=1512319190]
 position = Vector2(0, 380)
 
-[node name="Shape" type="CollisionShape2D" parent="Walls/Floor"]
+[node name="Shape" type="CollisionShape2D" parent="Walls/Floor" unique_id=800060941]
 shape = SubResource("Rect_Floor")
 
-[node name="Ceiling" type="StaticBody2D" parent="Walls"]
+[node name="Ceiling" type="StaticBody2D" parent="Walls" unique_id=2013700726]
 position = Vector2(0, -380)
 
-[node name="Shape" type="CollisionShape2D" parent="Walls/Ceiling"]
+[node name="Shape" type="CollisionShape2D" parent="Walls/Ceiling" unique_id=1717957628]
 shape = SubResource("Rect_Ceiling")
 
-[node name="Left" type="StaticBody2D" parent="Walls"]
+[node name="Left" type="StaticBody2D" parent="Walls" unique_id=2008499466]
 position = Vector2(-660, 0)
 
-[node name="Shape" type="CollisionShape2D" parent="Walls/Left"]
+[node name="Shape" type="CollisionShape2D" parent="Walls/Left" unique_id=964939534]
 shape = SubResource("Rect_Left")
 
-[node name="Right" type="StaticBody2D" parent="Walls"]
+[node name="Right" type="StaticBody2D" parent="Walls" unique_id=1862445844]
 position = Vector2(660, 0)
 
-[node name="Shape" type="CollisionShape2D" parent="Walls/Right"]
+[node name="Shape" type="CollisionShape2D" parent="Walls/Right" unique_id=679681363]
 shape = SubResource("Rect_Right")

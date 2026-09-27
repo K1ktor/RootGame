@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="UpgradeCard" format=3 uid="uid://c6dtsk7h68eux"]
+[gd_resource type="Resource" script_class="UpgradeCard" format=3 uid="uid://cavfog250qnc2"]
 
 [ext_resource type="Script" uid="uid://bnqs4ubwotit3" path="res://mechanics/upgrades/Scripts/upgrade_card.gd" id="1_card"]
 
 [resource]
 script = ExtResource("1_card")
-description = "More Roots
+description = "Wider Scouting
 
-+1 root sprouting at the start."
-upgrade_id = 3
+Roots reveal fog 35% farther."
+upgrade_id = 5

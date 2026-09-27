@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="UpgradeCard" format=3]
+[gd_resource type="Resource" script_class="UpgradeCard" format=3 uid="uid://b1jv5fg23uslj"]
 
-[ext_resource type="Script" path="res://mechanics/upgrades/Scripts/upgrade_card.gd" id="1_card"]
+[ext_resource type="Script" uid="uid://bnqs4ubwotit3" path="res://mechanics/upgrades/Scripts/upgrade_card.gd" id="1_card"]
 
 [resource]
 script = ExtResource("1_card")
-description = "Więcej odrostów\n\n+1 odrost na każdym segmencie korzenia."
+description = "More Offshoots
+
++1 offshoot on every root segment."
 upgrade_id = 1

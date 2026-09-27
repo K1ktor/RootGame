@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="UpgradeCard" format=3]
+[gd_resource type="Resource" script_class="UpgradeCard" format=3 uid="uid://c44x2e4scbe85"]
 
-[ext_resource type="Script" path="res://mechanics/upgrades/Scripts/upgrade_card.gd" id="1_card"]
+[ext_resource type="Script" uid="uid://bnqs4ubwotit3" path="res://mechanics/upgrades/Scripts/upgrade_card.gd" id="1_card"]
 
 [resource]
 script = ExtResource("1_card")
-description = "Rozdwojenie\n\n+15% szansy, że korzeń rozdwoi się po każdym segmencie."
+description = "Split
+
++15% chance for a root to split after each segment."
 upgrade_id = 4

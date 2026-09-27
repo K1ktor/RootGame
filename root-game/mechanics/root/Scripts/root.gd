@@ -16,6 +16,7 @@ const GROW_EASE := 0.6
 @export var angle_offset_deg: float = 0.0   
 @export var arrow_length: float = 36.0
 @export var arrow_color: Color = Color.WHITE
+@export_range(-4096, 4096) var arrow_z_index: int = 100   # globalny z_index strzałki - ma być nad mgłą wojny
 
 @export_group("Wzrost")
 @export var segment_length: float = 80.0
@@ -60,6 +61,7 @@ var _drank := false
 var _grow_time: float = 0.0
 
 var _line: Line2D
+var _arrow: Node2D                          # osobny węzeł, żeby strzałka miała własny z_index
 var _rng := RandomNumberGenerator.new()
 
 
@@ -81,6 +83,12 @@ func _ready() -> void:
 	add_child(_line)
 	_line.points = _points
 
+	_arrow = Node2D.new()
+	_arrow.z_index = arrow_z_index
+	_arrow.z_as_relative = false
+	_arrow.draw.connect(_draw_arrow)
+	add_child(_arrow)
+
 
 func _process(delta: float) -> void:
 	if (active == false): return
@@ -90,7 +98,7 @@ func _process(delta: float) -> void:
 			_swing(delta)
 		State.GROWING:
 			_grow(delta)
-	queue_redraw()
+	_arrow.queue_redraw()
 
 func _physics_process(_delta: float) -> void:
 	if (active == false): return
@@ -110,15 +118,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		_click_queued = _click_queued or (event.pressed and not event.echo and event.keycode == KEY_SPACE)
 
 
-func _draw() -> void:
+func _draw_arrow() -> void:
 	if _state != State.AIMING:
 		return
 	var tip := _tip()
 	var dir := _direction()
 	var end := tip + dir * arrow_length
 	var side := dir.orthogonal() * 7.0
-	draw_line(tip, end, arrow_color, 3.0, true)
-	draw_colored_polygon(PackedVector2Array([end + dir * 12.0, end + side, end - side]), arrow_color)
+	_arrow.draw_line(tip, end, arrow_color, 3.0, true)
+	_arrow.draw_colored_polygon(PackedVector2Array([end + dir * 12.0, end + side, end - side]), arrow_color)
 
 func copy_swing(other: Root) -> void:
 	_angle = other._angle
@@ -199,7 +207,7 @@ func _finish_segment() -> void:
 	_line.points = _points
 	if _blocked:
 		_state = State.STOPPED
-		queue_redraw()
+		_arrow.queue_redraw()
 		set_process(false)
 		set_physics_process(false)
 		set_process_unhandled_input(false)

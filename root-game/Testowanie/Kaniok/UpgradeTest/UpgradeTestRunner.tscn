@@ -1,21 +1,21 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://dscbsbidhfvve"]
 
-[ext_resource type="Script" path="res://Testowanie/Kaniok/UpgradeTest/upgrade_test_runner.gd" id="1_runner"]
-[ext_resource type="PackedScene" path="res://mechanics/upgrades/UpgradeScreen.tscn" id="2_screen"]
-[ext_resource type="PackedScene" path="res://Testowanie/Kaniok/UpgradeTest/TestLevel1.tscn" id="3_level1"]
-[ext_resource type="PackedScene" path="res://Testowanie/Kaniok/UpgradeTest/TestLevel2.tscn" id="4_level2"]
-[ext_resource type="PackedScene" path="res://Testowanie/Kaniok/UpgradeTest/TestLevel3.tscn" id="5_level3"]
+[ext_resource type="Script" uid="uid://byxm1gyigtt0l" path="res://Testowanie/Kaniok/UpgradeTest/upgrade_test_runner.gd" id="1_runner"]
+[ext_resource type="PackedScene" uid="uid://cafnchtni61aq" path="res://mechanics/upgrades/UpgradeScreen.tscn" id="2_screen"]
+[ext_resource type="PackedScene" uid="uid://b14nmusthldkq" path="res://Testowanie/Kaniok/UpgradeTest/TestLevel1.tscn" id="3_level1"]
+[ext_resource type="PackedScene" uid="uid://b7ej532nsxf3c" path="res://Testowanie/Kaniok/UpgradeTest/TestLevel2.tscn" id="4_level2"]
+[ext_resource type="PackedScene" uid="uid://d2qx2o02sto1k" path="res://Testowanie/Kaniok/UpgradeTest/TestLevel3.tscn" id="5_level3"]
 
-[node name="UpgradeTestRunner" type="Node2D"]
+[node name="UpgradeTestRunner" type="Node2D" unique_id=1602401755]
 script = ExtResource("1_runner")
 levels = Array[PackedScene]([ExtResource("3_level1"), ExtResource("4_level2"), ExtResource("5_level3")])
 
-[node name="UpgradeScreen" parent="." instance=ExtResource("2_screen")]
+[node name="UpgradeScreen" parent="." unique_id=837762263 instance=ExtResource("2_screen")]
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1606574346]
 layer = 5
 
-[node name="Info" type="Label" parent="HUD"]
+[node name="Info" type="Label" parent="HUD" unique_id=1871955934]
 unique_name_in_owner = true
 offset_left = 16.0
 offset_top = 12.0

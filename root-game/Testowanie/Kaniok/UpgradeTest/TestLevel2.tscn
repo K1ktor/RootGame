@@ -1,32 +1,51 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://b7ej532nsxf3c"]
 
 [ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="1_spawner"]
 [ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="2_water"]
-[ext_resource type="PackedScene" path="res://Testowanie/Kaniok/UpgradeTest/TestBounds.tscn" id="3_bounds"]
+[ext_resource type="PackedScene" uid="uid://cpssnj3ymmruw" path="res://Testowanie/Kaniok/UpgradeTest/TestBounds.tscn" id="3_bounds"]
+[ext_resource type="PackedScene" path="res://mechanics/fog/FogOfWar.tscn" id="4_itgm5"]
+[ext_resource type="Shader" uid="uid://baq31chdnxndb" path="res://Shaders/fog_of_war.gdshader" id="5_ydhf8"]
 
 [sub_resource type="RectangleShape2D" id="Rect_WallMiddle"]
 size = Vector2(520, 30)
 
-[node name="Level2_Sciana" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ik0w6"]
+resource_local_to_scene = true
+shader = ExtResource("5_ydhf8")
+shader_parameter/mask_area = Vector4(-640, 0, 1280, 640)
+shader_parameter/mask_texel_size = Vector2(0.0015625, 0.003125)
+shader_parameter/blur_radius = 3.0
+shader_parameter/edge_min = 0.05
+shader_parameter/edge_max = 0.6
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Level2_Sciana" type="Node2D" unique_id=40547659]
 
-[node name="TestBounds" parent="." instance=ExtResource("3_bounds")]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1015043381]
 
-[node name="Obstacles" type="Node2D" parent="."]
+[node name="TestBounds" parent="." unique_id=1600584600 instance=ExtResource("3_bounds")]
 
-[node name="WallMiddle" type="StaticBody2D" parent="Obstacles"]
+[node name="Obstacles" type="Node2D" parent="." unique_id=634369500]
+
+[node name="WallMiddle" type="StaticBody2D" parent="Obstacles" unique_id=1151501155]
 position = Vector2(0, -60)
 
-[node name="Shape" type="CollisionShape2D" parent="Obstacles/WallMiddle"]
+[node name="Shape" type="CollisionShape2D" parent="Obstacles/WallMiddle" unique_id=634045751]
 shape = SubResource("Rect_WallMiddle")
 
-[node name="Look" type="Polygon2D" parent="Obstacles/WallMiddle"]
+[node name="Look" type="Polygon2D" parent="Obstacles/WallMiddle" unique_id=1971810670]
 color = Color(0.36, 0.34, 0.33, 1)
 polygon = PackedVector2Array(-260, -15, 260, -15, 260, 15, -260, 15)
 
-[node name="WaterSource" parent="." instance=ExtResource("2_water")]
+[node name="WaterSource" parent="." unique_id=1681482764 instance=ExtResource("2_water")]
 position = Vector2(0, 230)
 
-[node name="RootSpawner" parent="." instance=ExtResource("1_spawner")]
+[node name="RootSpawner" parent="." unique_id=1973245076 instance=ExtResource("1_spawner")]
 position = Vector2(0, -300)
+
+[node name="FogOfWar" parent="." unique_id=367830300 node_paths=PackedStringArray("source") instance=ExtResource("4_itgm5")]
+process_priority = 100
+material = SubResource("ShaderMaterial_ik0w6")
+position = Vector2(0, -280)
+source = NodePath("../RootSpawner")
+size = Vector2(1280, 640)
+fog_color = Color(0.6707388, 0.4088922, 0.22637373, 1)
