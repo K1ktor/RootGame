@@ -20,20 +20,17 @@ var timer := 1000.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	oldScene.position = old_scene_pos
+	activeScene.position = new_scene_pos
 	Signals.upgrade_chosen.connect(resetProgress)
 	resetProgress()
-	timer = 1000
+	timer = 999
 	pass # Replace with function body.
 
 func resetProgress(card: UpgradeCard = null):
 	levelCompleted += 1
-	print("HALO KURWAAA")
 	timer = 0
 	var scene : Node2D = levels_list[min(levelCompleted, levels_list.size() - 1)].instantiate()
-	activeScene.remove_child(get_child(0))
-	oldScene.remove_child(get_child(0))
-	activeScene.remove_child(get_child(0))
-	oldScene.remove_child(get_child(0))
 	add_child(scene)
 	oldScene = activeScene
 	activeScene = scene
@@ -42,12 +39,13 @@ func resetProgress(card: UpgradeCard = null):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	timer += delta * speed
-	var progress = min(timer, 1000.0) / 1000.0
-	var easeing = easeInOutCubic(progress) * 2000
-	oldScene.position = old_scene_pos + easeing * Vector2.LEFT
-	activeScene.position = new_scene_pos + easeing * Vector2.LEFT
-	pass
+	if (timer < 1000):
+		timer += delta * speed
+		var progress = min(timer, 1000.0) / 1000.0
+		var easeing = easeInOutCubic(progress) * 2000
+		oldScene.position = old_scene_pos + easeing * Vector2.LEFT
+		activeScene.position = new_scene_pos + easeing * Vector2.LEFT
+
 
 func easeInOutCubic(x: float) -> float:
 	if x < 0.5:
