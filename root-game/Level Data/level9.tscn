@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://crqyfhqoqibd"]
+
+[ext_resource type="Texture2D" uid="uid://brw5x3atf0o2u" path="res://DEBUG/sunflower.png" id="1_6slhi"]
+[ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="2_55jpk"]
+[ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="3_premq"]
+[ext_resource type="PackedScene" uid="uid://d34obn0myxy63" path="res://mechanics/fog/FogOfWar.tscn" id="4_bcyfe"]
+[ext_resource type="Shader" uid="uid://baq31chdnxndb" path="res://Shaders/fog_of_war.gdshader" id="5_dt2xp"]
+
+[sub_resource type="Gradient" id="Gradient_y4q38"]
+colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.41960785, 0.25882354, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j8uoe"]
+gradient = SubResource("Gradient_y4q38")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dissolve"]
+noise_type = 3
+frequency = 0.02
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dissolve"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_dissolve")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6slhi"]
+resource_local_to_scene = true
+shader = ExtResource("5_dt2xp")
+shader_parameter/mask_area = Vector4(-640, 0, 1280, 720)
+shader_parameter/mask_texel_size = Vector2(0.0015625, 0.0027777778)
+shader_parameter/blur_radius = 3.0
+shader_parameter/edge_min = 0.05
+shader_parameter/edge_max = 0.6
+shader_parameter/dissolve_noise = SubResource("NoiseTexture2D_dissolve")
+shader_parameter/dissolve = 0.0
+shader_parameter/dissolve_softness = 0.08
+shader_parameter/noise_world_size = 512.0
+
+[node name="level1" type="Node2D" unique_id=586243082]
+
+[node name="Images" type="Node2D" parent="." unique_id=111852164]
+
+[node name="Background" type="Sprite2D" parent="Images" unique_id=356657488]
+visible = false
+position = Vector2(638.99884, 474)
+scale = Vector2(5.148447, 579.08795)
+texture = SubResource("GradientTexture1D_j8uoe")
+
+[node name="Sunflower" type="Sprite2D" parent="Images" unique_id=205245547]
+position = Vector2(610, 140)
+scale = Vector2(0.10756853, 0.10756854)
+texture = ExtResource("1_6slhi")
+
+[node name="WaterSource" parent="." unique_id=821674821 instance=ExtResource("2_55jpk")]
+position = Vector2(773, 617)
+polygon = PackedVector2Array(174, 75, 96, 84, 3, 78, -46, 69, -160, 92, -248, 53, -180, -39, -68, -62, 3, -45, 58, -40)
+
+[node name="RootSpawner" parent="." unique_id=1033761846 instance=ExtResource("3_premq")]
+position = Vector2(610, 204.54112)
+
+[node name="FogOfWar" parent="." unique_id=1780821365 node_paths=PackedStringArray("source") instance=ExtResource("4_bcyfe")]
+material = SubResource("ShaderMaterial_6slhi")
+position = Vector2(640, 204)
+source = NodePath("../RootSpawner")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=638419555]
+z_index = 20
+color = Color(0.45882353, 0.3254902, 0.19215687, 1)
+polygon = PackedVector2Array(-22, 201, 327, 205, 198, 342, 118, 541, 206, 690, 978, 713, 1053, 518, 1117, 339, 1096, 278, 969, 200, 1425, 204, 1375, 736, -218, 738)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D" unique_id=863985868]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/StaticBody2D" unique_id=985331201]
+polygon = PackedVector2Array(-22, 201, 327, 205, 480, 337, 315, 491, 451, 695, 891, 671, 980, 438, 1019, 305, 863, 247, 969, 200, 1425, 204, 1375, 736, -218, 738)
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=524237778]
+position = Vector2(-249, -35)
+color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+polygon = PackedVector2Array(634, 460, 575, 445, 562, 466, 630, 614, 760, 628, 857, 606, 802, 520, 709, 460)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D2" unique_id=1892048236]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D2/StaticBody2D" unique_id=357313159]
+polygon = PackedVector2Array(634, 460, 575, 445, 562, 466, 630, 614, 760, 628, 857, 606, 802, 520, 709, 460)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D2" unique_id=91395456]
+position = Vector2(947, -64)
+rotation = 0.7771422
+scale = Vector2(0.44693822, 0.5553637)
+color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+polygon = PackedVector2Array(634, 460, 575, 445, 562, 466, 630, 614, 760, 628, 857, 606, 802, 520, 709, 460)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D2/Polygon2D2" unique_id=124008686]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D2/Polygon2D2/StaticBody2D" unique_id=2128879405]
+polygon = PackedVector2Array(634, 460, 575, 445, 562, 466, 630, 614, 760, 628, 857, 606, 802, 520, 709, 460)
+
+[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=1944361800]
+position = Vector2(14, -45)
+color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D3" unique_id=1100674822]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D3/StaticBody2D" unique_id=1830445035]
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D3" unique_id=275267697]
+position = Vector2(107, 82)
+color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+polygon = PackedVector2Array(663, 379, 575, 445, 562, 466, 515, 508, 599, 526, 747, 540, 786, 478, 787, 390)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D3/Polygon2D3" unique_id=4098289]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D3/Polygon2D3/StaticBody2D" unique_id=1764741628]
+polygon = PackedVector2Array(663, 379, 575, 445, 562, 466, 515, 508, 599, 526, 747, 540, 786, 478, 787, 390)

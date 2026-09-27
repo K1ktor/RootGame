@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://cqpn4awxcc3k7"]
+[gd_scene format=3 uid="uid://bgameo1cgvtnj"]
 
-[ext_resource type="Texture2D" uid="uid://brw5x3atf0o2u" path="res://DEBUG/sunflower.png" id="1_khpce"]
-[ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="2_brouo"]
-[ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="3_poiyr"]
-[ext_resource type="PackedScene" uid="uid://d34obn0myxy63" path="res://mechanics/fog/FogOfWar.tscn" id="4_6pe5y"]
-[ext_resource type="Shader" uid="uid://baq31chdnxndb" path="res://Shaders/fog_of_war.gdshader" id="5_cqma4"]
+[ext_resource type="Texture2D" uid="uid://brw5x3atf0o2u" path="res://DEBUG/sunflower.png" id="1_17lf2"]
+[ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="2_57dsh"]
+[ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="3_dg8b6"]
+[ext_resource type="PackedScene" uid="uid://d34obn0myxy63" path="res://mechanics/fog/FogOfWar.tscn" id="4_yt6f3"]
+[ext_resource type="Shader" uid="uid://baq31chdnxndb" path="res://Shaders/fog_of_war.gdshader" id="5_bur7f"]
 
 [sub_resource type="Gradient" id="Gradient_y4q38"]
 colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.41960785, 0.25882354, 1)
@@ -14,12 +14,15 @@ gradient = SubResource("Gradient_y4q38")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_khpce"]
 resource_local_to_scene = true
-shader = ExtResource("5_cqma4")
+shader = ExtResource("5_bur7f")
 shader_parameter/mask_area = Vector4(-640, 0, 1280, 720)
 shader_parameter/mask_texel_size = Vector2(0.0015625, 0.0027777778)
 shader_parameter/blur_radius = 3.0
 shader_parameter/edge_min = 0.05
 shader_parameter/edge_max = 0.6
+shader_parameter/dissolve = 0.0
+shader_parameter/dissolve_softness = 0.08
+shader_parameter/noise_world_size = 512.0
 
 [node name="level1" type="Node2D" unique_id=586243082]
 
@@ -34,16 +37,16 @@ texture = SubResource("GradientTexture1D_j8uoe")
 [node name="Sunflower" type="Sprite2D" parent="Images" unique_id=205245547]
 position = Vector2(1062, 127.00001)
 scale = Vector2(0.14749703, 0.14749704)
-texture = ExtResource("1_khpce")
+texture = ExtResource("1_17lf2")
 
-[node name="WaterSource" parent="." unique_id=821674821 instance=ExtResource("2_brouo")]
+[node name="WaterSource" parent="." unique_id=821674821 instance=ExtResource("2_57dsh")]
 position = Vector2(-61, 340)
 polygon = PackedVector2Array(395, 175, 239, 230, 174, 202, 199, 121, 188, 86, 190, 31, 239, -7, 370, -36, 401, 10, 399, 87)
 
-[node name="RootSpawner" parent="." unique_id=1033761846 instance=ExtResource("3_poiyr")]
+[node name="RootSpawner" parent="." unique_id=1033761846 instance=ExtResource("3_dg8b6")]
 position = Vector2(1063.28, 204.541)
 
-[node name="FogOfWar" parent="." unique_id=1053831041 node_paths=PackedStringArray("source") instance=ExtResource("4_6pe5y")]
+[node name="FogOfWar" parent="." unique_id=1053831041 node_paths=PackedStringArray("source") instance=ExtResource("4_yt6f3")]
 material = SubResource("ShaderMaterial_khpce")
 position = Vector2(640, 204)
 source = NodePath("../RootSpawner")
