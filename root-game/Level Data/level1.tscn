@@ -2,7 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://brw5x3atf0o2u" path="res://DEBUG/sunflower.png" id="2_1k56t"]
 [ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="3_plle1"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" path="res://mechanics/fog/FogOfWar.tscn" id="4_5wg1r"]
+=======
+[ext_resource type="PackedScene" uid="uid://d34obn0myxy63" path="res://mechanics/fog/FogOfWar.tscn" id="4_5wg1r"]
+>>>>>>> eb8cb427e7fa05e955c339d9ed28edbd90734dd2
 [ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="4_pbkjt"]
 [ext_resource type="Shader" uid="uid://baq31chdnxndb" path="res://Shaders/fog_of_war.gdshader" id="5_oj7mn"]
 
@@ -12,7 +16,11 @@ colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.419
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_j8uoe"]
 gradient = SubResource("Gradient_y4q38")
 
+<<<<<<< HEAD
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_adlg8"]
+=======
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5wg1r"]
+>>>>>>> eb8cb427e7fa05e955c339d9ed28edbd90734dd2
 resource_local_to_scene = true
 shader = ExtResource("5_oj7mn")
 shader_parameter/mask_area = Vector4(-640, 0, 1280, 720)
@@ -43,7 +51,18 @@ position = Vector2(596, 467)
 position = Vector2(610, 204.54112)
 
 [node name="FogOfWar" parent="." unique_id=1780821365 node_paths=PackedStringArray("source") instance=ExtResource("4_5wg1r")]
+<<<<<<< HEAD
 process_priority = 100
 material = SubResource("ShaderMaterial_adlg8")
 position = Vector2(640, 204)
 source = NodePath("../RootSpawner")
+=======
+material = SubResource("ShaderMaterial_5wg1r")
+position = Vector2(640, 204)
+source = NodePath("../RootSpawner")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=638419555]
+z_index = 20
+color = Color(0.45882353, 0.3254902, 0.19215687, 1)
+polygon = PackedVector2Array(-22, 201, 327, 205, 198, 342, 321, 500, 231, 617, 778, 678, 940, 551, 880, 393, 1008, 313, 969, 200, 1425, 204, 1375, 736, -218, 738)
+>>>>>>> eb8cb427e7fa05e955c339d9ed28edbd90734dd2

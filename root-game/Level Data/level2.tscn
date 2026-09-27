@@ -3,12 +3,23 @@
 [ext_resource type="Texture2D" uid="uid://brw5x3atf0o2u" path="res://DEBUG/sunflower.png" id="1_asdkh"]
 [ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="3_asdkh"]
 [ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="3_tf2r1"]
+[ext_resource type="PackedScene" uid="uid://d34obn0myxy63" path="res://mechanics/fog/FogOfWar.tscn" id="4_tf2r1"]
+[ext_resource type="Shader" uid="uid://baq31chdnxndb" path="res://Shaders/fog_of_war.gdshader" id="5_36qjh"]
 
 [sub_resource type="Gradient" id="Gradient_y4q38"]
 colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.41960785, 0.25882354, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_j8uoe"]
 gradient = SubResource("Gradient_y4q38")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ifw1q"]
+resource_local_to_scene = true
+shader = ExtResource("5_36qjh")
+shader_parameter/mask_area = Vector4(-640, 0, 1280, 720)
+shader_parameter/mask_texel_size = Vector2(0.0015625, 0.0027777778)
+shader_parameter/blur_radius = 3.0
+shader_parameter/edge_min = 0.05
+shader_parameter/edge_max = 0.6
 
 [node name="level1" type="Node2D" unique_id=586243082]
 
@@ -31,3 +42,13 @@ polygon = PackedVector2Array(115, 36, 85, 36, 36, 65, -45, 100, -57.599686, 49.9
 
 [node name="RootSpawner" parent="." unique_id=1033761846 instance=ExtResource("3_asdkh")]
 position = Vector2(610, 204.54112)
+
+[node name="FogOfWar" parent="." unique_id=1053831041 node_paths=PackedStringArray("source") instance=ExtResource("4_tf2r1")]
+material = SubResource("ShaderMaterial_ifw1q")
+position = Vector2(640, 204)
+source = NodePath("../RootSpawner")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2080379660]
+z_index = 20
+color = Color(0.45882353, 0.3254902, 0.19215687, 1)
+polygon = PackedVector2Array(-22, 201, 327, 205, 133, 300, -17, 534, 337, 686, 655, 458, 940, 551, 1199, 414, 1008, 313, 969, 200, 1425, 204, 1375, 736, -218, 738)

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dccjmnyo85nhn" path="res://mechanics/level manager/levelManager.tscn" id="4_pbkjt"]
 
 [sub_resource type="Gradient" id="Gradient_y4q38"]
-colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.41960785, 0.25882354, 1)
+colors = PackedColorArray(0.45716143, 0.32461777, 0.19137171, 1, 0.45882353, 0.3254902, 0.19215687, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_j8uoe"]
 gradient = SubResource("Gradient_y4q38")
@@ -40,7 +40,11 @@ offset_bottom = 52.0
 text = "Next level"
 
 [node name="LevelManager" parent="." unique_id=411992365 instance=ExtResource("4_pbkjt")]
+<<<<<<< HEAD
 position = Vector2(45, -229)
+=======
+position = Vector2(0, -229)
+>>>>>>> eb8cb427e7fa05e955c339d9ed28edbd90734dd2
 
 [node name="activeScene" type="Node2D" parent="." unique_id=1956599407]
 

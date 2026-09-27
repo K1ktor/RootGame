@@ -5,7 +5,7 @@ var levels_list = [
 	preload("res://Level Data/level2.tscn"),  
 	preload("res://Level Data/level3.tscn"),
 	]
-var levelCompleted = 0
+var levelCompleted = -1
 
 const old_scene_pos = Vector2(0.0, 250.0)
 const new_scene_pos = Vector2(2000.0, 250.0)
@@ -26,6 +26,10 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func resetProgress(card: UpgradeCard = null):
+<<<<<<< HEAD
+=======
+	levelCompleted += 1
+>>>>>>> eb8cb427e7fa05e955c339d9ed28edbd90734dd2
 	print("HALO KURWAAA")
 	timer = 0
 	var scene : Node2D = levels_list[min(levelCompleted, levels_list.size() - 1)].instantiate()
