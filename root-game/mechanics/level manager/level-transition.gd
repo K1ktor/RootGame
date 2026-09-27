@@ -35,6 +35,7 @@ func resetProgress():
 	oldPlantRoot.active = false
 	newPlantRoot.active = false
 	newPlantRoot.reset()
+	
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
