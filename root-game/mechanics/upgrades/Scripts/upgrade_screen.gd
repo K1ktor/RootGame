@@ -50,6 +50,9 @@ func _on_card_chosen(card: UpgradeCard) -> void:
 	_clear_cards()
 	if pause_game:
 		get_tree().paused = false
+
+	print("SKibidi")
+
 	Signals.upgrade_chosen.emit(card)
 
 
