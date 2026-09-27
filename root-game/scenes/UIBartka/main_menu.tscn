@@ -2,7 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://b3eq1vmovmspl" path="res://Assets/UIAssets/app-icon.png" id="1_pvlwx"]
 [ext_resource type="Script" uid="uid://b672txjdgl0rb" path="res://scenes/SceneScripts/UIscripts/main_menu.gd" id="1_umjbx"]
+[ext_resource type="Shader" uid="uid://c4pjkghhbirf6" path="res://scenes/SceneScripts/UIscripts/MenuLeafScroll.gdshader" id="2_ascet"]
 [ext_resource type="Theme" uid="uid://dowgpeg4oms5l" path="res://Assets/UIAssets/Styles/MainTheme.tres" id="2_gg128"]
+[ext_resource type="Texture2D" uid="uid://t1e8cjc2a4dm" path="res://Assets/UIAssets/LeafsMain.png" id="3_ascet"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ascet"]
+shader = ExtResource("2_ascet")
+shader_parameter/speed = 0.07
 
 [node name="MainMenu" type="Control" unique_id=2058300574]
 layout_mode = 3
@@ -13,13 +19,26 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_umjbx")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1277511087]
+[node name="TextureRect" type="ColorRect" parent="." unique_id=353837303]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.6509804, 0.45882353, 0.30588236, 1)
+
+[node name="Pattern" type="TextureRect" parent="TextureRect" unique_id=728830743]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ascet")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ascet")
+stretch_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=21174433]
 layout_mode = 1
