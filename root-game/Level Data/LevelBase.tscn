@@ -40,11 +40,7 @@ offset_bottom = 52.0
 text = "Next level"
 
 [node name="LevelManager" parent="." unique_id=411992365 instance=ExtResource("4_pbkjt")]
-<<<<<<< HEAD
-position = Vector2(45, -229)
-=======
 position = Vector2(0, -229)
->>>>>>> eb8cb427e7fa05e955c339d9ed28edbd90734dd2
 
 [node name="activeScene" type="Node2D" parent="." unique_id=1956599407]
 

@@ -26,10 +26,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func resetProgress(card: UpgradeCard = null):
-<<<<<<< HEAD
-=======
 	levelCompleted += 1
->>>>>>> eb8cb427e7fa05e955c339d9ed28edbd90734dd2
 	print("HALO KURWAAA")
 	timer = 0
 	var scene : Node2D = levels_list[min(levelCompleted, levels_list.size() - 1)].instantiate()
