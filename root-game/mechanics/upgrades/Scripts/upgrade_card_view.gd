@@ -10,7 +10,6 @@ signal chosen(card: UpgradeCard)
 var _card: UpgradeCard
 var _tween: Tween
 
-@onready var _texture: TextureRect = %Texture
 @onready var _description: Label = %Description
 
 
@@ -26,8 +25,6 @@ func _ready() -> void:
 # Wołać po dodaniu do drzewa
 func setup(card: UpgradeCard) -> void:
 	_card = card
-	_texture.texture = card.card
-	_texture.visible = card.card != null
 	_description.text = card.description
 
 

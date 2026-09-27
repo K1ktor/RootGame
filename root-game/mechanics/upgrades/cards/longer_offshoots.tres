@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="UpgradeCard" format=3]
+[gd_resource type="Resource" script_class="UpgradeCard" format=3 uid="uid://pmul6vknecaw"]
 
-[ext_resource type="Script" path="res://mechanics/upgrades/Scripts/upgrade_card.gd" id="1_card"]
+[ext_resource type="Script" uid="uid://bnqs4ubwotit3" path="res://mechanics/upgrades/Scripts/upgrade_card.gd" id="1_card"]
 
 [resource]
 script = ExtResource("1_card")
-description = "Dłuższe odrosty\n\nOdrosty są o 30% dłuższe."
+description = "Longer Offshoots
+
+Offshoots are 30% longer."
 upgrade_id = 2

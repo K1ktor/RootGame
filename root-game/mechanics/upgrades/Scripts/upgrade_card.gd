@@ -3,7 +3,7 @@ extends Resource
 # Jedna karta ulepszenia. Nową tworzysz przez FileSystem > New Resource > UpgradeCard,
 # potem dodajesz ją do card_pool w UpgradeScreen.tscn.
 
-enum Id { LONGER_ROOTS, MORE_OFFSHOOTS, LONGER_OFFSHOOTS, MORE_ROOTS, SPLIT_CHANCE }
+enum Id { LONGER_ROOTS, MORE_OFFSHOOTS, LONGER_OFFSHOOTS, MORE_ROOTS, SPLIT_CHANCE, WIDER_REVEAL }
 
 @export var card: Texture2D
 @export_multiline var description: String = ""

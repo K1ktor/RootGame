@@ -1,19 +1,38 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://b14nmusthldkq"]
 
 [ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="1_spawner"]
 [ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="2_water"]
-[ext_resource type="PackedScene" path="res://Testowanie/Kaniok/UpgradeTest/TestBounds.tscn" id="3_bounds"]
+[ext_resource type="PackedScene" uid="uid://cpssnj3ymmruw" path="res://Testowanie/Kaniok/UpgradeTest/TestBounds.tscn" id="3_bounds"]
+[ext_resource type="PackedScene" path="res://mechanics/fog/FogOfWar.tscn" id="4_fog"]
+[ext_resource type="Shader" uid="uid://baq31chdnxndb" path="res://Shaders/fog_of_war.gdshader" id="5_sk15i"]
 
-[node name="Level1_Prosto" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sk15i"]
+resource_local_to_scene = true
+shader = ExtResource("5_sk15i")
+shader_parameter/mask_area = Vector4(-640, 0, 1280, 640)
+shader_parameter/mask_texel_size = Vector2(0.0015625, 0.003125)
+shader_parameter/blur_radius = 3.0
+shader_parameter/edge_min = 0.05
+shader_parameter/edge_max = 0.6
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Level1_Prosto" type="Node2D" unique_id=1728173523]
 
-[node name="TestBounds" parent="." instance=ExtResource("3_bounds")]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1879425432]
 
-[node name="Obstacles" type="Node2D" parent="."]
+[node name="TestBounds" parent="." unique_id=1921718104 instance=ExtResource("3_bounds")]
 
-[node name="WaterSource" parent="." instance=ExtResource("2_water")]
+[node name="Obstacles" type="Node2D" parent="." unique_id=624125752]
+
+[node name="WaterSource" parent="." unique_id=1587576377 instance=ExtResource("2_water")]
 position = Vector2(0, 150)
 
-[node name="RootSpawner" parent="." instance=ExtResource("1_spawner")]
+[node name="RootSpawner" parent="." unique_id=776883020 instance=ExtResource("1_spawner")]
 position = Vector2(0, -300)
+
+[node name="FogOfWar" parent="." unique_id=16942557 node_paths=PackedStringArray("source") instance=ExtResource("4_fog")]
+process_priority = 100
+material = SubResource("ShaderMaterial_sk15i")
+position = Vector2(0, -280)
+source = NodePath("../RootSpawner")
+size = Vector2(1280, 640)
+fog_color = Color(0.6707388, 0.4088922, 0.22637373, 1)

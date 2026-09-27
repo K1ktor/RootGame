@@ -7,6 +7,7 @@ const OFFSHOOTS_BONUS := 1            # +1 odrost na segment za poziom
 const OFFSHOOT_LENGTH_BONUS := 0.3    # +30% długości odrostu za poziom
 const ROOTS_BONUS := 1                # +1 korzeń za poziom
 const SPLIT_CHANCE_BONUS := 0.15      # +15% szansy na rozdwojenie za poziom
+const REVEAL_BONUS := 0.35            # +35% zasięgu odkrywania mgły za poziom
 
 # Maksymalny poziom ulepszenia (brak wpisu = bez limitu). Wymaksowane karty nie są losowane.
 const MAX_LEVEL := {
@@ -14,6 +15,7 @@ const MAX_LEVEL := {
 	UpgradeCard.Id.SPLIT_CHANCE: 4,
 	UpgradeCard.Id.MORE_OFFSHOOTS: 8,
 	UpgradeCard.Id.LONGER_OFFSHOOTS: 3,
+	UpgradeCard.Id.WIDER_REVEAL: 4,
 }
 
 var _levels := {}  # UpgradeCard.Id -> ile razy wybrane
@@ -54,3 +56,7 @@ func extra_roots() -> int:
 
 func split_chance() -> float:
 	return minf(SPLIT_CHANCE_BONUS * level(UpgradeCard.Id.SPLIT_CHANCE), 1.0)
+
+
+func reveal_mult() -> float:
+	return 1.0 + REVEAL_BONUS * level(UpgradeCard.Id.WIDER_REVEAL)

@@ -2,19 +2,20 @@
 
 [ext_resource type="Script" uid="uid://bbadq80cunot1" path="res://mechanics/upgrades/Scripts/upgrade_screen.gd" id="1_screen"]
 [ext_resource type="Script" uid="uid://bnqs4ubwotit3" path="res://mechanics/upgrades/Scripts/upgrade_card.gd" id="2_card"]
-[ext_resource type="PackedScene" path="res://mechanics/upgrades/UpgradeCardView.tscn" id="3_view"]
+[ext_resource type="PackedScene" uid="uid://cdpimh7sn6yl0" path="res://mechanics/upgrades/UpgradeCardView.tscn" id="3_view"]
 [ext_resource type="Theme" uid="uid://dowgpeg4oms5l" path="res://Assets/UIAssets/Styles/MainTheme.tres" id="4_theme"]
-[ext_resource type="Resource" path="res://mechanics/upgrades/cards/longer_roots.tres" id="5_longer_roots"]
-[ext_resource type="Resource" path="res://mechanics/upgrades/cards/more_offshoots.tres" id="6_more_offshoots"]
-[ext_resource type="Resource" path="res://mechanics/upgrades/cards/longer_offshoots.tres" id="7_longer_offshoots"]
-[ext_resource type="Resource" path="res://mechanics/upgrades/cards/more_roots.tres" id="8_more_roots"]
-[ext_resource type="Resource" path="res://mechanics/upgrades/cards/split_chance.tres" id="9_split_chance"]
+[ext_resource type="Resource" uid="uid://cwjd74iu56pd" path="res://mechanics/upgrades/cards/longer_roots.tres" id="5_longer_roots"]
+[ext_resource type="Resource" uid="uid://b1jv5fg23uslj" path="res://mechanics/upgrades/cards/more_offshoots.tres" id="6_more_offshoots"]
+[ext_resource type="Resource" uid="uid://pmul6vknecaw" path="res://mechanics/upgrades/cards/longer_offshoots.tres" id="7_longer_offshoots"]
+[ext_resource type="Resource" uid="uid://c6dtsk7h68eux" path="res://mechanics/upgrades/cards/more_roots.tres" id="8_more_roots"]
+[ext_resource type="Resource" uid="uid://c44x2e4scbe85" path="res://mechanics/upgrades/cards/split_chance.tres" id="9_split_chance"]
+[ext_resource type="Resource" uid="uid://cavfog250qnc2" path="res://mechanics/upgrades/cards/wider_reveal.tres" id="10_wider_reveal"]
 
 [node name="UpgradeScreen" type="CanvasLayer" unique_id=119715774]
 process_mode = 3
 layer = 10
 script = ExtResource("1_screen")
-card_pool = Array[ExtResource("2_card")]([ExtResource("5_longer_roots"), ExtResource("6_more_offshoots"), ExtResource("7_longer_offshoots"), ExtResource("8_more_roots"), ExtResource("9_split_chance")])
+card_pool = Array[ExtResource("2_card")]([ExtResource("5_longer_roots"), ExtResource("6_more_offshoots"), ExtResource("7_longer_offshoots"), ExtResource("8_more_roots"), ExtResource("9_split_chance"), ExtResource("10_wider_reveal")])
 card_view_scene = ExtResource("3_view")
 
 [node name="UI" type="Control" parent="." unique_id=285352286]
@@ -56,7 +57,7 @@ theme_override_colors/font_color = Color(0.85882354, 0.7647059, 0.6117647, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 40
-text = "Wybierz ulepszenie"
+text = "Choose an upgrade"
 horizontal_alignment = 1
 
 [node name="Cards" type="HBoxContainer" parent="UI/Center/VBox" unique_id=1502128875]
