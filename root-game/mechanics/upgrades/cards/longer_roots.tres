@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="UpgradeCard" format=3]
+
+[ext_resource type="Script" path="res://mechanics/upgrades/Scripts/upgrade_card.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+description = "Dłuższe korzenie\n\nKażdy segment korzenia jest o 20% dłuższy."
+upgrade_id = 0

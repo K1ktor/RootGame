@@ -1,0 +1,45 @@
+[gd_scene format=3]
+
+[sub_resource type="RectangleShape2D" id="Rect_Floor"]
+size = Vector2(1400, 40)
+
+[sub_resource type="RectangleShape2D" id="Rect_Ceiling"]
+size = Vector2(1400, 40)
+
+[sub_resource type="RectangleShape2D" id="Rect_Left"]
+size = Vector2(40, 800)
+
+[sub_resource type="RectangleShape2D" id="Rect_Right"]
+size = Vector2(40, 800)
+
+[node name="TestBounds" type="Node2D"]
+
+[node name="Background" type="Polygon2D" parent="."]
+color = Color(0.72, 0.56, 0.38, 1)
+polygon = PackedVector2Array(-640, -360, 640, -360, 640, 360, -640, 360)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, 380)
+
+[node name="Shape" type="CollisionShape2D" parent="Walls/Floor"]
+shape = SubResource("Rect_Floor")
+
+[node name="Ceiling" type="StaticBody2D" parent="Walls"]
+position = Vector2(0, -380)
+
+[node name="Shape" type="CollisionShape2D" parent="Walls/Ceiling"]
+shape = SubResource("Rect_Ceiling")
+
+[node name="Left" type="StaticBody2D" parent="Walls"]
+position = Vector2(-660, 0)
+
+[node name="Shape" type="CollisionShape2D" parent="Walls/Left"]
+shape = SubResource("Rect_Left")
+
+[node name="Right" type="StaticBody2D" parent="Walls"]
+position = Vector2(660, 0)
+
+[node name="Shape" type="CollisionShape2D" parent="Walls/Right"]
+shape = SubResource("Rect_Right")

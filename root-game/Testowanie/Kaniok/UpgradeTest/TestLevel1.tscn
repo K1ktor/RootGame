@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="1_spawner"]
+[ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="2_water"]
+[ext_resource type="PackedScene" path="res://Testowanie/Kaniok/UpgradeTest/TestBounds.tscn" id="3_bounds"]
+
+[node name="Level1_Prosto" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TestBounds" parent="." instance=ExtResource("3_bounds")]
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="WaterSource" parent="." instance=ExtResource("2_water")]
+position = Vector2(0, 150)
+
+[node name="RootSpawner" parent="." instance=ExtResource("1_spawner")]
+position = Vector2(0, -300)

@@ -1,0 +1,58 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="1_spawner"]
+[ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="2_water"]
+[ext_resource type="PackedScene" path="res://Testowanie/Kaniok/UpgradeTest/TestBounds.tscn" id="3_bounds"]
+
+[sub_resource type="RectangleShape2D" id="Rect_WallLeft"]
+size = Vector2(860, 30)
+
+[sub_resource type="RectangleShape2D" id="Rect_WallRight"]
+size = Vector2(300, 30)
+
+[sub_resource type="RectangleShape2D" id="Rect_Pillar"]
+size = Vector2(30, 190)
+
+[node name="Level3_Szczelina" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TestBounds" parent="." instance=ExtResource("3_bounds")]
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="WallLeft" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(-210, 0)
+
+[node name="Shape" type="CollisionShape2D" parent="Obstacles/WallLeft"]
+shape = SubResource("Rect_WallLeft")
+
+[node name="Look" type="Polygon2D" parent="Obstacles/WallLeft"]
+color = Color(0.36, 0.34, 0.33, 1)
+polygon = PackedVector2Array(-430, -15, 430, -15, 430, 15, -430, 15)
+
+[node name="WallRight" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(490, 0)
+
+[node name="Shape" type="CollisionShape2D" parent="Obstacles/WallRight"]
+shape = SubResource("Rect_WallRight")
+
+[node name="Look" type="Polygon2D" parent="Obstacles/WallRight"]
+color = Color(0.36, 0.34, 0.33, 1)
+polygon = PackedVector2Array(-150, -15, 150, -15, 150, 15, -150, 15)
+
+[node name="Pillar" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(60, 110)
+
+[node name="Shape" type="CollisionShape2D" parent="Obstacles/Pillar"]
+shape = SubResource("Rect_Pillar")
+
+[node name="Look" type="Polygon2D" parent="Obstacles/Pillar"]
+color = Color(0.36, 0.34, 0.33, 1)
+polygon = PackedVector2Array(-15, -95, 15, -95, 15, 95, -15, 95)
+
+[node name="WaterSource" parent="." instance=ExtResource("2_water")]
+position = Vector2(-380, 250)
+
+[node name="RootSpawner" parent="." instance=ExtResource("1_spawner")]
+position = Vector2(0, -300)

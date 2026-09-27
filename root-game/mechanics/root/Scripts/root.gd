@@ -4,6 +4,7 @@ extends Node2D
 signal segment_finished(tip_position: Vector2)
 signal stopped(hit_position: Vector2)
 signal drank_water(water: WaterSource)
+signal drink_finished()                     # animacja picia skończona - RootSpawner kończy level
 
 enum State { AIMING, GROWING, STOPPED }
 
@@ -25,6 +26,7 @@ const GROW_EASE := 0.6
 @export_group("Odrosty")
 @export var offshoot_scene: PackedScene
 @export_range(0, 20) var offshoots_per_segment: int = 2
+@export var offshoot_length_mult: float = 1.0   # mnożnik długości odrostów (ulepszenie)
 
 @export_group("Wygląd")
 @export var base_width: float = 14.0
@@ -172,6 +174,8 @@ func _spawn_offshoots() -> void:
 		var p := float(idx) / (_segment.size() - 1)
 		var delay := (1.0 - pow(1.0 - p, GROW_EASE)) * grow_duration
 		var o := offshoot_scene.instantiate() as Offshoot
+		o.length_min *= offshoot_length_mult
+		o.length_max *= offshoot_length_mult
 		o.default_color = root_color
 		if o.gradient == null:
 			o.gradient = root_gradient
@@ -214,6 +218,10 @@ func has_drunk() -> bool:
 	return _drank
 
 
+func is_stopped() -> bool:
+	return _state == State.STOPPED
+
+
 func _hit_water_source() -> WaterSource:
 	var node := _hit_collider as Node
 	while node:
@@ -230,7 +238,7 @@ func _drink(water: WaterSource) -> void:
 	_set_drink_front(1.0 + drink_softness)
 	var tween := create_tween()
 	tween.tween_method(_set_drink_front, 1.0 + drink_softness, -drink_softness, drink_duration) 			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	tween.finished.connect(Signals.level_complete.emit)
+	tween.finished.connect(drink_finished.emit)
 	drank_water.emit(water)
 
 
@@ -307,3 +315,6 @@ static func _raycast_obstacle(space: PhysicsDirectSpaceState2D, from: Vector2, t
 		query.exclude = exclude
 		hit = space.intersect_ray(query)
 	return hit
+
+func reset():
+	pass

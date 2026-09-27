@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cafnchtni61aq"]
+
+[ext_resource type="Script" uid="uid://bbadq80cunot1" path="res://mechanics/upgrades/Scripts/upgrade_screen.gd" id="1_screen"]
+[ext_resource type="Script" uid="uid://bnqs4ubwotit3" path="res://mechanics/upgrades/Scripts/upgrade_card.gd" id="2_card"]
+[ext_resource type="PackedScene" path="res://mechanics/upgrades/UpgradeCardView.tscn" id="3_view"]
+[ext_resource type="Theme" uid="uid://dowgpeg4oms5l" path="res://Assets/UIAssets/Styles/MainTheme.tres" id="4_theme"]
+[ext_resource type="Resource" path="res://mechanics/upgrades/cards/longer_roots.tres" id="5_longer_roots"]
+[ext_resource type="Resource" path="res://mechanics/upgrades/cards/more_offshoots.tres" id="6_more_offshoots"]
+[ext_resource type="Resource" path="res://mechanics/upgrades/cards/longer_offshoots.tres" id="7_longer_offshoots"]
+[ext_resource type="Resource" path="res://mechanics/upgrades/cards/more_roots.tres" id="8_more_roots"]
+[ext_resource type="Resource" path="res://mechanics/upgrades/cards/split_chance.tres" id="9_split_chance"]
+
+[node name="UpgradeScreen" type="CanvasLayer" unique_id=119715774]
+process_mode = 3
+layer = 10
+script = ExtResource("1_screen")
+card_pool = Array[ExtResource("2_card")]([ExtResource("5_longer_roots"), ExtResource("6_more_offshoots"), ExtResource("7_longer_offshoots"), ExtResource("8_more_roots"), ExtResource("9_split_chance")])
+card_view_scene = ExtResource("3_view")
+
+[node name="UI" type="Control" parent="." unique_id=285352286]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("4_theme")
+
+[node name="Dim" type="ColorRect" parent="UI" unique_id=1130937445]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Center" type="CenterContainer" parent="UI" unique_id=946717055]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBox" type="VBoxContainer" parent="UI/Center" unique_id=24469685]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="Title" type="Label" parent="UI/Center/VBox" unique_id=644838992]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85882354, 0.7647059, 0.6117647, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 40
+text = "Wybierz ulepszenie"
+horizontal_alignment = 1
+
+[node name="Cards" type="HBoxContainer" parent="UI/Center/VBox" unique_id=1502128875]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 40
+alignment = 1

@@ -19,6 +19,7 @@ config/icon="uid://d1tsgt1uw67m2"
 
 Signals="*uid://b3ygwpj31pv58"
 Config="*uid://ccl3tfml3fl4b"
+Upgrades="*res://autoloads/upgrades.gd"
 
 [display]
 
