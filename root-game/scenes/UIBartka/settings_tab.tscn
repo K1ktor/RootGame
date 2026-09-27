@@ -1,41 +1,86 @@
 [gd_scene format=3 uid="uid://hvmkkrc826ek"]
 
-[node name="SettingsTab" type="NinePatchRect" unique_id=1454277215]
+[ext_resource type="Script" uid="uid://ddvnbkknxfvyx" path="res://scenes/SceneScripts/UIscripts/settings_tab.gd" id="1_vglvl"]
+[ext_resource type="Theme" uid="uid://dowgpeg4oms5l" path="res://Assets/UIAssets/Styles/MainTheme.tres" id="2_verhn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vglvl"]
+bg_color = Color(0.55599713, 0.41834465, 0.25705287, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.69479686, 0.51467323, 0.35418513, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+
+[node name="SettingsTab" type="PanelContainer" unique_id=811575466]
+custom_minimum_size = Vector2(512, 360)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -327.0
-offset_top = -255.5
-offset_right = 327.0
-offset_bottom = 255.5
+offset_left = -256.0
+offset_top = -135.0
+offset_right = 256.0
+offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
-region_rect = Rect2(0, 0, 311, 451)
+theme_override_styles/panel = SubResource("StyleBoxFlat_vglvl")
+script = ExtResource("1_vglvl")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2086982456]
-layout_mode = 0
-offset_right = 654.0
-offset_bottom = 511.0
+layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1488067137]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=2095698315]
 layout_mode = 2
+theme_override_constants/margin_bottom = 20
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=908845721]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer" unique_id=1488067137]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "ASDGASIHDASASDASDSAS
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
 
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=826530175]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.85882354, 0.7647059, 0.6117647, 1)
+text = "Music 43%"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-SDA
-SDA
-SAS
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=2116458754]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+theme = ExtResource("2_verhn")
+max_value = 1.0
+step = 0.01
 
-SDDAS
-SDA
-SDA"
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=926059911]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.85882354, 0.7647059, 0.6117647, 1)
+text = "SFX 100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=955268528]
+layout_mode = 2
+theme = ExtResource("2_verhn")
+max_value = 1.0
+step = 0.01
+
+[node name="CloseBtn" type="Button" parent="MarginContainer" unique_id=832152632]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("2_verhn")
+theme_override_font_sizes/font_size = 24
+text = "Close"
+
+[connection signal="pressed" from="MarginContainer/CloseBtn" to="." method="_on_close_btn_pressed"]
