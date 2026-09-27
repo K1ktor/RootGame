@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://dicfr3uli4egp"]
+
+[ext_resource type="Texture2D" uid="uid://brw5x3atf0o2u" path="res://DEBUG/sunflower.png" id="1_1w52o"]
+[ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="2_7gvvx"]
+[ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="3_rhvqi"]
+[ext_resource type="PackedScene" uid="uid://d34obn0myxy63" path="res://mechanics/fog/FogOfWar.tscn" id="4_72qb2"]
+[ext_resource type="Shader" uid="uid://baq31chdnxndb" path="res://Shaders/fog_of_war.gdshader" id="5_b8x2q"]
+
+[sub_resource type="Gradient" id="Gradient_y4q38"]
+colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.41960785, 0.25882354, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j8uoe"]
+gradient = SubResource("Gradient_y4q38")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1w52o"]
+resource_local_to_scene = true
+shader = ExtResource("5_b8x2q")
+shader_parameter/mask_area = Vector4(-640, 0, 1280, 720)
+shader_parameter/mask_texel_size = Vector2(0.0015625, 0.0027777778)
+shader_parameter/blur_radius = 3.0
+shader_parameter/edge_min = 0.05
+shader_parameter/edge_max = 0.6
+
+[node name="level1" type="Node2D" unique_id=586243082]
+
+[node name="Images" type="Node2D" parent="." unique_id=111852164]
+
+[node name="Background" type="Sprite2D" parent="Images" unique_id=356657488]
+visible = false
+position = Vector2(638.99884, 474)
+scale = Vector2(5.148447, 579.08795)
+texture = SubResource("GradientTexture1D_j8uoe")
+
+[node name="Sunflower" type="Sprite2D" parent="Images" unique_id=205245547]
+position = Vector2(610, 140)
+scale = Vector2(0.10756853, 0.10756854)
+texture = ExtResource("1_1w52o")
+
+[node name="WaterSource" parent="." unique_id=821674821 instance=ExtResource("2_7gvvx")]
+position = Vector2(292, 608)
+polygon = PackedVector2Array(174, 75, 96, 84, 3, 78, -46, 69, -89, 43, -131, -22, -147, -89, -77, -133, -1, -122, 125, -42)
+
+[node name="RootSpawner" parent="." unique_id=1033761846 instance=ExtResource("3_rhvqi")]
+position = Vector2(610, 204.54112)
+
+[node name="FogOfWar" parent="." unique_id=1780821365 node_paths=PackedStringArray("source") instance=ExtResource("4_72qb2")]
+material = SubResource("ShaderMaterial_1w52o")
+position = Vector2(640, 204)
+source = NodePath("../RootSpawner")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=638419555]
+z_index = 20
+color = Color(0.45882353, 0.3254902, 0.19215687, 1)
+polygon = PackedVector2Array(-22, 201, 327, 205, 198, 342, 118, 541, 206, 690, 978, 713, 1053, 518, 1117, 339, 1096, 278, 969, 200, 1425, 204, 1375, 736, -218, 738)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D" unique_id=863985868]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/StaticBody2D" unique_id=985331201]
+polygon = PackedVector2Array(-22, 201, 327, 205, 198, 342, 118, 541, 206, 690, 978, 713, 1053, 518, 1117, 339, 1096, 278, 969, 200, 1425, 204, 1375, 736, -218, 738)
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=524237778]
+position = Vector2(-220, -144)
+color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D2" unique_id=1892048236]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D2/StaticBody2D" unique_id=357313159]
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D2" unique_id=758952467]
+position = Vector2(102, 138)
+color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D2/Polygon2D2" unique_id=2019892850]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D2/Polygon2D2/StaticBody2D" unique_id=1376850798]
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=1944361800]
+position = Vector2(102, 138)
+color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D3" unique_id=1100674822]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D3/StaticBody2D" unique_id=1830445035]
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D3" unique_id=911703564]
+position = Vector2(171, -44)
+color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D3/Polygon2D3" unique_id=553300246]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D3/Polygon2D3/StaticBody2D" unique_id=624152223]
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D3/Polygon2D3" unique_id=1585728676]
+position = Vector2(-96, -137)
+color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D3/Polygon2D3/Polygon2D3" unique_id=1637617836]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D3/Polygon2D3/Polygon2D3/StaticBody2D" unique_id=1555769364]
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D3/Polygon2D3/Polygon2D3" unique_id=380837236]
+position = Vector2(171, -44)
+color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3" unique_id=1552368018]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/StaticBody2D" unique_id=59729750]
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3" unique_id=686833688]
+position = Vector2(-296, -62)
+color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3" unique_id=1630594301]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/Polygon2D3/StaticBody2D" unique_id=526006919]
+polygon = PackedVector2Array(602, 453, 575, 445, 562, 466, 561, 495, 599, 526, 617, 503, 637, 475, 623, 453)

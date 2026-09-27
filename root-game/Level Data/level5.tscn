@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cqpn4awxcc3k7"]
+
+[ext_resource type="Texture2D" uid="uid://brw5x3atf0o2u" path="res://DEBUG/sunflower.png" id="1_khpce"]
+[ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="2_brouo"]
+[ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="3_poiyr"]
+[ext_resource type="PackedScene" uid="uid://d34obn0myxy63" path="res://mechanics/fog/FogOfWar.tscn" id="4_6pe5y"]
+[ext_resource type="Shader" uid="uid://baq31chdnxndb" path="res://Shaders/fog_of_war.gdshader" id="5_cqma4"]
+
+[sub_resource type="Gradient" id="Gradient_y4q38"]
+colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.41960785, 0.25882354, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j8uoe"]
+gradient = SubResource("Gradient_y4q38")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_khpce"]
+resource_local_to_scene = true
+shader = ExtResource("5_cqma4")
+shader_parameter/mask_area = Vector4(-640, 0, 1280, 720)
+shader_parameter/mask_texel_size = Vector2(0.0015625, 0.0027777778)
+shader_parameter/blur_radius = 3.0
+shader_parameter/edge_min = 0.05
+shader_parameter/edge_max = 0.6
+
+[node name="level1" type="Node2D" unique_id=586243082]
+
+[node name="Images" type="Node2D" parent="." unique_id=111852164]
+
+[node name="Background" type="Sprite2D" parent="Images" unique_id=356657488]
+visible = false
+position = Vector2(638.99884, 474)
+scale = Vector2(5.148447, 579.08795)
+texture = SubResource("GradientTexture1D_j8uoe")
+
+[node name="Sunflower" type="Sprite2D" parent="Images" unique_id=205245547]
+position = Vector2(1062, 127.00001)
+scale = Vector2(0.14749703, 0.14749704)
+texture = ExtResource("1_khpce")
+
+[node name="WaterSource" parent="." unique_id=821674821 instance=ExtResource("2_brouo")]
+position = Vector2(-61, 340)
+polygon = PackedVector2Array(395, 175, 239, 230, 174, 202, 199, 121, 188, 86, 190, 31, 239, -7, 370, -36, 401, 10, 399, 87)
+
+[node name="RootSpawner" parent="." unique_id=1033761846 instance=ExtResource("3_poiyr")]
+position = Vector2(1063.28, 204.541)
+
+[node name="FogOfWar" parent="." unique_id=1053831041 node_paths=PackedStringArray("source") instance=ExtResource("4_6pe5y")]
+material = SubResource("ShaderMaterial_khpce")
+position = Vector2(640, 204)
+source = NodePath("../RootSpawner")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2080379660]
+z_index = 20
+color = Color(0.45882353, 0.3254902, 0.19215687, 1)
+polygon = PackedVector2Array(-22, 201, 958, 203, 604, 375, 198, 249, 24, 581, 205, 586, 511, 680, 834, 593, 1169, 634, 1209, 345, 1305, 203, 1425, 204, 1375, 736, -218, 738)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D" unique_id=1230322270]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/StaticBody2D" unique_id=1156012985]
+polygon = PackedVector2Array(-22, 201, 958, 203, 744, 345, 604, 375, 198, 249, 24, 581, 205, 586, 311, 668, 511, 680, 620, 591, 834, 593, 969, 588, 1128, 650, 1165, 462, 1209, 345, 1261, 203, 1425, 204, 1375, 736, -218, 738)
