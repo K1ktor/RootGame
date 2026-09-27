@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://b8v5mlt1p01b5"]
+[gd_scene format=3 uid="uid://dmwa8dgb1558i"]
 
-[ext_resource type="Texture2D" uid="uid://brw5x3atf0o2u" path="res://DEBUG/sunflower.png" id="1_asdkh"]
-[ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="3_asdkh"]
-[ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="3_tf2r1"]
+[ext_resource type="Texture2D" uid="uid://brw5x3atf0o2u" path="res://DEBUG/sunflower.png" id="1_gt88t"]
+[ext_resource type="PackedScene" uid="uid://devpi7wm3aoa3" path="res://mechanics/terrain/WaterSource/WaterSource.tscn" id="2_mcbvq"]
+[ext_resource type="PackedScene" uid="uid://brxqsch3nf3p" path="res://mechanics/root/RootSpawner.tscn" id="3_0h0xf"]
 
 [sub_resource type="Gradient" id="Gradient_y4q38"]
 colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.41960785, 0.25882354, 1)
@@ -23,11 +23,11 @@ texture = SubResource("GradientTexture1D_j8uoe")
 [node name="Sunflower" type="Sprite2D" parent="Images" unique_id=205245547]
 position = Vector2(607, 122.00001)
 scale = Vector2(0.14749703, 0.14749704)
-texture = ExtResource("1_asdkh")
+texture = ExtResource("1_gt88t")
 
-[node name="WaterSource" parent="." unique_id=821674821 instance=ExtResource("3_tf2r1")]
+[node name="WaterSource" parent="." unique_id=821674821 instance=ExtResource("2_mcbvq")]
 position = Vector2(280, 513)
-polygon = PackedVector2Array(115, 36, 85, 36, 36, 65, -45, 100, -57.599686, 49.91967, -137, 20, -133, -75, -48, -160, 85, -150, 159, -86)
+polygon = PackedVector2Array(694, 127, 106, 128, 36, 65, -45, 100, -57.599686, 49.91967, -137, 20, -133, -75, -48, -160, 147, -19, 875, -14)
 
-[node name="RootSpawner" parent="." unique_id=1033761846 instance=ExtResource("3_asdkh")]
+[node name="RootSpawner" parent="." unique_id=1033761846 instance=ExtResource("3_0h0xf")]
 position = Vector2(610, 204.54112)

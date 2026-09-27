@@ -1,6 +1,10 @@
 extends Node
 
-var levels_list = [ preload("res://Level Data/level1.tscn"), preload("res://Level Data/level2.tscn") ]
+var levels_list = [ 
+	preload("res://Level Data/level1.tscn"), 
+	preload("res://Level Data/level2.tscn"),  
+	preload("res://Level Data/level3.tscn"),
+	]
 var levelCompleted = 0
 
 const old_scene_pos = Vector2(0.0, 250.0)
@@ -22,19 +26,20 @@ func _ready() -> void:
 
 func resetProgress():
 	timer = 0
-	var scene : Node2D = levels_list[1].instantiate()
+	var scene : Node2D = levels_list[min(levelCompleted, levels_list.size() - 1)].instantiate()
+	activeScene.remove_child(get_child(0))
+	oldScene.remove_child(get_child(0))
 	activeScene.remove_child(get_child(0))
 	oldScene.remove_child(get_child(0))
 	add_child(scene)
 	oldScene = activeScene
 	activeScene = scene
-	#root_spawner = activeScene.get_node("RootSpawner")
+	root_spawner = activeScene.get_node("RootSpawner")
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	timer += delta * speed
-	print(timer)
 	var progress = min(timer, 1000.0) / 1000.0
 	var easeing = easeInOutCubic(progress) * 2000
 	oldScene.position = old_scene_pos + easeing * Vector2.LEFT
@@ -49,5 +54,6 @@ func easeInOutCubic(x: float) -> float:
 
 
 func _on_button_button_down() -> void:
+	levelCompleted += 1
 	resetProgress()
 	pass # Replace with function body.

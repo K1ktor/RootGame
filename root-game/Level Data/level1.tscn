@@ -30,4 +30,3 @@ position = Vector2(596, 467)
 
 [node name="RootSpawner" parent="." unique_id=1033761846 instance=ExtResource("3_plle1")]
 position = Vector2(610, 204.54112)
-scale = Vector2(0.10756853, 0.10756854)
