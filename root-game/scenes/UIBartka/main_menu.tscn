@@ -86,11 +86,6 @@ texture_normal = ExtResource("1_pvlwx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect" unique_id=1101058413]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/PlayBtn" to="." method="_on_play_btn_pressed"]
 [connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/ExitBtn" to="." method="_on_exit_btn_pressed"]
