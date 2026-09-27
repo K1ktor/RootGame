@@ -2,6 +2,7 @@
 
 [ext_resource type="Material" uid="uid://rjm0m54sii6e" path="res://Shaders/grass.tres" id="1_m25cy"]
 [ext_resource type="PackedScene" uid="uid://cafnchtni61aq" path="res://mechanics/upgrades/UpgradeScreen.tscn" id="3_gx2i4"]
+[ext_resource type="Texture2D" uid="uid://c650u08e8pihu" path="res://Assets/GameBg.png" id="5_gamebg"]
 [ext_resource type="PackedScene" uid="uid://dccjmnyo85nhn" path="res://mechanics/level manager/levelManager.tscn" id="4_pbkjt"]
 
 [sub_resource type="Gradient" id="Gradient_y4q38"]
@@ -19,6 +20,11 @@ gradient = SubResource("Gradient_1k56t")
 [node name="LevelBase" type="Node2D" unique_id=586243082]
 
 [node name="Images" type="Node2D" parent="." unique_id=111852164]
+
+[node name="Sky" type="Sprite2D" parent="Images" unique_id=1738204911]
+scale = Vector2(0.33333334, 0.33333334)
+texture = ExtResource("5_gamebg")
+centered = false
 
 [node name="Background" type="Sprite2D" parent="Images" unique_id=356657488]
 position = Vector2(638.99884, 474)
