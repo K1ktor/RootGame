@@ -1,6 +1,6 @@
 class_name UpgradeScreen
 extends CanvasLayer
-# Po ukończeniu levela (Signals.level_complete) pokazuje kilka losowych kart z card_pool.
+# Po ukończeniu levela (Signals.level_complete) i rozpłynięciu się mgły wojny pokazuje kilka losowych kart z card_pool.
 # Gracz wybiera jedną, trafia ona do autoloadu Upgrades i leci Signals.upgrade_chosen.
 
 @export var card_pool: Array[UpgradeCard] = []
@@ -10,6 +10,8 @@ extends CanvasLayer
 
 @onready var _cards_box: HBoxContainer = %Cards
 
+var _waiting_for_fog := false
+
 
 func _ready() -> void:
 	hide()
@@ -17,8 +19,25 @@ func _ready() -> void:
 
 
 func _on_level_complete() -> void:
-	if visible:
+	if visible or _waiting_for_fog:
 		return
+	# Najpierw mgła wojny ma się całkiem rozpłynąć, dopiero potem karty
+	_waiting_for_fog = true
+	await get_tree().process_frame   # mgły mogą odebrać level_complete po nas
+	while _any_fog_dissolving():
+		await get_tree().process_frame
+	_waiting_for_fog = false
+	_show_cards()
+
+
+func _any_fog_dissolving() -> bool:
+	for fog in get_tree().get_nodes_in_group(FogOfWar.GROUP):
+		if (fog as FogOfWar).is_dissolving():
+			return true
+	return false
+
+
+func _show_cards() -> void:
 	var options := _pick_cards()
 	if options.is_empty():
 		return  # wszystko wymaksowane

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RootGame"
-run/main_scene="uid://ichdfrgnkihi"
+run/main_scene="uid://bmysdh8rw3iqk"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="uid://d1tsgt1uw67m2"
 

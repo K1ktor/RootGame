@@ -3,7 +3,7 @@ extends Control
 @onready var settings_tab = preload("res://scenes/UIBartka/settings_tab.tscn")
 
 func _on_play_btn_pressed() -> void:
-	pass #level_choice_transition
+	get_tree().change_scene_to_file("res://Level Data/LevelBase.tscn")
 
 func _on_settings_btn_pressed() -> void:
 	var settings_instance = settings_tab.instantiate()
