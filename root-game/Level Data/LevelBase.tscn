@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ichdfrgnkihi"]
 
 [ext_resource type="Material" uid="uid://rjm0m54sii6e" path="res://Shaders/grass.tres" id="1_m25cy"]
+[ext_resource type="PackedScene" uid="uid://cafnchtni61aq" path="res://mechanics/upgrades/UpgradeScreen.tscn" id="3_gx2i4"]
 [ext_resource type="PackedScene" uid="uid://dccjmnyo85nhn" path="res://mechanics/level manager/levelManager.tscn" id="4_pbkjt"]
-[ext_resource type="Texture2D" uid="uid://da4s5cyiv2kef" path="res://Assets/kwiatek.svg" id="7_ikl13"]
 
 [sub_resource type="Gradient" id="Gradient_y4q38"]
 colors = PackedColorArray(0.5803922, 0.41960785, 0.25882354, 1, 0.5803922, 0.41960785, 0.25882354, 1)
@@ -42,12 +42,10 @@ text = "Next level"
 [node name="LevelManager" parent="." unique_id=411992365 instance=ExtResource("4_pbkjt")]
 position = Vector2(45, -229)
 
-[node name="Kwiatek" type="Sprite2D" parent="." unique_id=2041571177]
-position = Vector2(490, 141)
-texture = ExtResource("7_ikl13")
-
 [node name="activeScene" type="Node2D" parent="." unique_id=1956599407]
 
 [node name="oldScene" type="Node2D" parent="." unique_id=32667225]
+
+[node name="UpgradeScreen" parent="." unique_id=119715774 instance=ExtResource("3_gx2i4")]
 
 [connection signal="button_down" from="Button" to="LevelManager" method="_on_button_button_down"]

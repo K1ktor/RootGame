@@ -5,8 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://cpssnj3ymmruw" path="res://Testowanie/Kaniok/UpgradeTest/TestBounds.tscn" id="3_bounds"]
 [ext_resource type="PackedScene" path="res://mechanics/fog/FogOfWar.tscn" id="4_fog"]
 [ext_resource type="Shader" uid="uid://baq31chdnxndb" path="res://Shaders/fog_of_war.gdshader" id="5_sk15i"]
+[ext_resource type="PackedScene" uid="uid://cafnchtni61aq" path="res://mechanics/upgrades/UpgradeScreen.tscn" id="6_q1cas"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sk15i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wuiax"]
 resource_local_to_scene = true
 shader = ExtResource("5_sk15i")
 shader_parameter/mask_area = Vector4(-640, 0, 1280, 640)
@@ -31,8 +32,10 @@ position = Vector2(0, -300)
 
 [node name="FogOfWar" parent="." unique_id=16942557 node_paths=PackedStringArray("source") instance=ExtResource("4_fog")]
 process_priority = 100
-material = SubResource("ShaderMaterial_sk15i")
+material = SubResource("ShaderMaterial_wuiax")
 position = Vector2(0, -280)
 source = NodePath("../RootSpawner")
 size = Vector2(1280, 640)
 fog_color = Color(0.6707388, 0.4088922, 0.22637373, 1)
+
+[node name="UpgradeScreen" parent="." unique_id=119715774 instance=ExtResource("6_q1cas")]

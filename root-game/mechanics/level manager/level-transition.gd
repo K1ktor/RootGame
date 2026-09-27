@@ -20,11 +20,13 @@ var timer := 1000.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Signals.upgrade_chosen.connect(resetProgress)
 	resetProgress()
 	timer = 1000
 	pass # Replace with function body.
 
-func resetProgress():
+func resetProgress(card: UpgradeCard = null):
+	print("HALO KURWAAA")
 	timer = 0
 	var scene : Node2D = levels_list[min(levelCompleted, levels_list.size() - 1)].instantiate()
 	activeScene.remove_child(get_child(0))
