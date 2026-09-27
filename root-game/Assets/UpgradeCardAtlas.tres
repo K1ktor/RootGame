@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://cmjb8litlxr8x"]
+
+[ext_resource type="Texture2D" uid="uid://cdtvb4u4plb4c" path="res://Assets/UIAssets/UpgradeCard.png" id="1_7mptd"]
+
+[resource]
+atlas = ExtResource("1_7mptd")
+region = Rect2(632, 174, 311, 451)
