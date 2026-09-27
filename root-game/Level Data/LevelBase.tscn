@@ -2,8 +2,8 @@
 
 [ext_resource type="Material" uid="uid://rjm0m54sii6e" path="res://Shaders/grass.tres" id="1_m25cy"]
 [ext_resource type="PackedScene" uid="uid://cafnchtni61aq" path="res://mechanics/upgrades/UpgradeScreen.tscn" id="3_gx2i4"]
-[ext_resource type="Texture2D" uid="uid://c650u08e8pihu" path="res://Assets/GameBg.png" id="5_gamebg"]
 [ext_resource type="PackedScene" uid="uid://dccjmnyo85nhn" path="res://mechanics/level manager/levelManager.tscn" id="4_pbkjt"]
+[ext_resource type="Texture2D" uid="uid://c650u08e8pihu" path="res://Assets/GameBg.png" id="5_gamebg"]
 
 [sub_resource type="Gradient" id="Gradient_y4q38"]
 colors = PackedColorArray(0.45716143, 0.32461777, 0.19137171, 1, 0.45882353, 0.3254902, 0.19215687, 1)

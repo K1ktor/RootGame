@@ -10,8 +10,12 @@ extends Node2D
 #
 # Pozycja węzła = środek górnej krawędzi mgły. Postaw go na linii ziemi,
 # a mgła rozciągnie się w dół o size.y i na boki o size.x / 2.
+#
+# Po Signals.level_complete mgła znika w plamach według szumu Perlina (dissolve_noise).
 
-@export var source: Node2D                   # RootSpawner (albo Root), którego korzenie odkrywają mgłę
+const GROUP := &"fog_of_war"
+
+@export var source: Node2D                  # RootSpawner (albo Root), którego korzenie odkrywają mgłę
 @export var size := Vector2(1280, 720):      # szerokość i głębokość mgły pod węzłem
 	set(value):
 		size = value.max(Vector2.ONE)
@@ -37,6 +41,21 @@ extends Node2D
 		edge_max = value
 		_set_shader_param("edge_max", value)
 
+@export_group("Znikanie")
+@export var dissolve_noise: Texture2D:       # szum Perlina - kolejność, w jakiej znikają kawałki mgły
+	set(value):
+		dissolve_noise = value
+		_set_shader_param("dissolve_noise", value)
+@export_range(0.1, 10.0, 0.1) var dissolve_duration: float = 1.5   # ile sekund trwa znikanie
+@export_range(0.001, 0.5, 0.001) var dissolve_softness: float = 0.08:   # miękkość brzegu plam
+	set(value):
+		dissolve_softness = value
+		_set_shader_param("dissolve_softness", value)
+@export var noise_world_size: float = 512.0:  # wielkość kafla szumu w pikselach (więcej = większe plamy)
+	set(value):
+		noise_world_size = maxf(value, 1.0)
+		_set_shader_param("noise_world_size", noise_world_size)
+
 @export_group("Wygląd")
 @export var fog_texture: Texture2D:          # brak = jednolity kolor
 	set(value):
@@ -60,6 +79,11 @@ var _viewport: SubViewport
 var _mirror_root: Node2D
 var _mirrors := {}                           # źródłowa Line2D -> lustrzana Line2D w masce
 var _white: Texture2D
+var _dissolve_tween: Tween
+var _dissolve := 0.0:
+	set(value):
+		_dissolve = value
+		_set_shader_param("dissolve", value)
 
 
 func _ready() -> void:
@@ -67,6 +91,10 @@ func _ready() -> void:
 	_set_shader_param("blur_radius", blur_radius)
 	_set_shader_param("edge_min", edge_min)
 	_set_shader_param("edge_max", edge_max)
+	_set_shader_param("dissolve_noise", dissolve_noise)
+	_set_shader_param("dissolve_softness", dissolve_softness)
+	_set_shader_param("noise_world_size", noise_world_size)
+	_dissolve = 0.0
 	var img := Image.create(1, 1, false, Image.FORMAT_RGBA8)
 	img.fill(Color.WHITE)
 	_white = ImageTexture.create_from_image(img)
@@ -88,9 +116,36 @@ func _ready() -> void:
 	if mat:
 		mat.set_shader_parameter("mask_texture", _viewport.get_texture())
 
+	add_to_group(GROUP)
+	Signals.level_complete.connect(_on_level_complete)
+
 
 func _process(_delta: float) -> void:
 	_sync_mirrors()
+
+
+func _on_level_complete() -> void:
+	if _dissolve_tween or _dissolve >= 1.0:
+		return
+	# Tween działa też w pauzie, żeby mgła nigdy nie utknęła w połowie
+	_dissolve_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	_dissolve_tween.tween_property(self, "_dissolve", 1.0, dissolve_duration) \
+			.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_dissolve_tween.tween_callback(hide)   # zniknięta mgła nie musi się już rysować
+
+
+# UpgradeScreen czeka, aż wszystkie mgły skończą znikać, zanim pokaże karty
+func is_dissolving() -> bool:
+	return _dissolve_tween != null and _dissolve_tween.is_valid()
+
+
+# Przywraca pełną mgłę (np. po restarcie levela bez przeładowania sceny)
+func restore_fog() -> void:
+	if _dissolve_tween:
+		_dissolve_tween.kill()
+		_dissolve_tween = null
+	_dissolve = 0.0
+	show()
 
 
 func _draw() -> void:
