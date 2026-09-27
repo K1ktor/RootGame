@@ -1,16 +1,20 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://d34obn0myxy63"]
 
-[ext_resource type="Script" path="res://mechanics/fog/Scripts/fog_of_war.gd" id="1_fog"]
-[ext_resource type="Shader" path="res://Shaders/fog_of_war.gdshader" id="2_shader"]
+[ext_resource type="Script" uid="uid://o5hck04spmn3" path="res://mechanics/fog/Scripts/fog_of_war.gd" id="1_fog"]
+[ext_resource type="Shader" uid="uid://baq31chdnxndb" path="res://Shaders/fog_of_war.gdshader" id="2_shader"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fog"]
 resource_local_to_scene = true
 shader = ExtResource("2_shader")
+shader_parameter/mask_area = Vector4(-640, 0, 1280, 720)
+shader_parameter/mask_texel_size = Vector2(0.0015625, 0.0027777778)
 shader_parameter/blur_radius = 3.0
 shader_parameter/edge_min = 0.05
 shader_parameter/edge_max = 0.6
 
-[node name="FogOfWar" type="Node2D"]
+[node name="FogOfWar" type="Node2D" unique_id=1053831041]
+process_priority = 100
 z_index = 10
 material = SubResource("ShaderMaterial_fog")
 script = ExtResource("1_fog")
+fog_color = Color(0.5803922, 0.41960785, 0.25882354, 1)
